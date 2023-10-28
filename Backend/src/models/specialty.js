@@ -1,4 +1,4 @@
-'use strict';Clinics
+'use strict';
 const {
   Model
 } = require('sequelize');
