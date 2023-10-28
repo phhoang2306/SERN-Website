@@ -4,7 +4,8 @@ import viewEngine from "./config/viewEngine";
 import initWebRoutes from './route/web';
 require('dotenv').config();
 
-let app = express();
+let app = express()
+
 //Config app
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -15,5 +16,5 @@ initWebRoutes(app);
 // Listen at port in env 
 let port = process.env.PORT || 2306;
 app.listen(port, () => {
-    console.log("Backend is running on port " + port)
+    console.log('Backend is running on the port '+ port)
 })
