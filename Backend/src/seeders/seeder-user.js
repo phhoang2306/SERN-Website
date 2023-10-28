@@ -9,7 +9,9 @@ module.exports = {
         address: 'HCM',
         gender: 1,
         type: 'ROLE',
-        key: 'R1'
+        key: 'R1',
+        createdAt: new Date(),
+        updatedAt: new Date()
     }]);
   },
   async down(queryInterface, Sequelize) {
