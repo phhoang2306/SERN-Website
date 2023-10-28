@@ -2,7 +2,8 @@ const {Sequelize} = require('sequelize');
 
 const sequelize = new Sequelize('web','root', null, {
     host:'localhost',
-    dialect:'mysql'
+    dialect:'mysql',
+    logging: false // Turn off notification when query db
 });
 
 let connectDB = async () =>{
