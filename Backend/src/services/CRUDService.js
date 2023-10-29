@@ -80,15 +80,30 @@ let updateUserInformation = (data) =>{
                 user.phoneNumber = data.phoneNumber;
                 user.roleID = data.roleID;
                 user.positionID = data.positionID;
-                await user.save();
-                let allUsers = await db.User.findAll({
-                    raw:true
-                });
-                resolve(allUsers)
+                await user.save();  
             }
-            else{
-                resolve();
+            let allUsers = await db.User.findAll({
+                raw:true
+            });
+            resolve(allUsers)
+        }catch(e){
+            console.log(e);
+        }
+    })
+}
+let deleteUser = (id) =>{
+    return new Promise(async (resolve, reject) =>{
+        try{
+            let user = await db.User.findOne({
+                where: {id: id}
+            })
+            if (user){
+                await user.destroy()
             }
+            let allUsers = await db.User.findAll({
+                raw:true
+            });
+            resolve(allUsers)
         }catch(e){
             console.log(e);
         }
@@ -98,5 +113,6 @@ module.exports = {
     createNewUser: createNewUser,
     getUserInformation: getUserInformation,
     editUserInformation: editUserInformation,
-    updateUserInformation: updateUserInformation 
+    updateUserInformation: updateUserInformation,
+    deleteUser: deleteUser 
 }

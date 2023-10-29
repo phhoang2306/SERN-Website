@@ -64,7 +64,7 @@
                 <td> <%= dataTable[i].positionID %> </td>
                 <td class = 'btn'> 
                   <a href ='/EDIT-CRUD?id=<%= dataTable[i].id %>' class= 'btn-edit' type = "button">Edit</a>
-                  <button class = 'btn-del' type = "button">Delete</button>
+                  <a href ='/DEL-CRUD?id=<%= dataTable[i].id %>' class= 'btn-del' type = "button">Delete</a>
                 </td>
             </tr>
         <% }%>
