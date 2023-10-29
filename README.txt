@@ -1,4 +1,4 @@
-To create database model:
+Create database model:
 	npx sequelize-cli db:migrate
 Seeder file:
 	npx sequelize-cli db:seed:all
