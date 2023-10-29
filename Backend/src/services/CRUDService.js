@@ -67,8 +67,36 @@ let editUserInformation = (userID) =>{
         }
     })
 }
+let updateUserInformation = (data) =>{
+    return new Promise(async (resolve, reject) =>{
+        try{
+            let user = await db.User.findOne({
+                where: {id: data.id}
+            })
+            if(user){
+                user.fullname = data.fullname;
+                user.address = data.address;
+                user.gender = data.gender;
+                user.phoneNumber = data.phoneNumber;
+                user.roleID = data.roleID;
+                user.positionID = data.positionID;
+                await user.save();
+                let allUsers = await db.User.findAll({
+                    raw:true
+                });
+                resolve(allUsers)
+            }
+            else{
+                resolve();
+            }
+        }catch(e){
+            console.log(e);
+        }
+    })
+}
 module.exports = {
     createNewUser: createNewUser,
     getUserInformation: getUserInformation,
-    editUserInformation: editUserInformation
+    editUserInformation: editUserInformation,
+    updateUserInformation: updateUserInformation 
 }

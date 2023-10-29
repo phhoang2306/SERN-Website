@@ -35,11 +35,18 @@ let getEditCRUD = async (req, res) => {
     else 
         return res.send("User doesn't exist !");
 }
-
+let putCRUD = async (req, res) =>{
+    let data = req.body;
+    let allUser =  await CRUDService.updateUserInformation(data)
+    return res.render('displayCRUD.ejs',{
+        dataTable: allUser
+    });
+}
 module.exports = {
     getHomePage : getHomePage,
     getCRUD: getCRUD,
     postCRUD: postCRUD,
     displayGetCRUD: displayGetCRUD,
-    getEditCRUD: getEditCRUD
+    getEditCRUD: getEditCRUD,
+    putCRUD: putCRUD
 }
