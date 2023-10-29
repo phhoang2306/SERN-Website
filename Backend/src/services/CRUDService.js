@@ -39,10 +39,29 @@ let createNewUser = async (data) =>{
 let getUserInformation = () => {
     return new Promise(async (resolve, reject) => {
         try{
-            let users = db.User.findAll({
+            let users = await db.User.findAll({
                 raw:true
             });
             resolve(users)
+        }catch(e){
+            reject(e)
+        }
+    }) 
+}
+
+let editUserInformation = (userID) =>{
+    return new Promise(async (resolve, reject) => {
+        try{
+            let user = await db.User.findOne({
+                where: {id: userID},
+                raw: true
+            });
+            if(user){
+                resolve(user)
+            }
+            else{
+                resolve({})
+            }
         }catch(e){
             reject(e)
         }
@@ -50,5 +69,6 @@ let getUserInformation = () => {
 }
 module.exports = {
     createNewUser: createNewUser,
-    getUserInformation: getUserInformation
+    getUserInformation: getUserInformation,
+    editUserInformation: editUserInformation
 }

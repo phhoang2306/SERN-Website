@@ -20,6 +20,25 @@
         tr:nth-child(even) {
           background-color: #dddddd;
         }
+        .btn {
+          text-align: center;
+        }
+        .btn-edit{
+          outline: none;
+          background: orange;
+          height: 30px;
+          width: 60;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+        .btn-del{
+          outline: none;
+          background: red;
+          height: 30px;
+          width: 60;
+          border-radius: 3px;
+          cursor: pointer;
+        }
         </style>
 </head>
 <body>
@@ -33,10 +52,11 @@
           <th>Role ID</th>
           <th>Phone number</th>
           <th>Position ID</th>
+          <th>Action</th>
         </tr>
         <% for (let i = 0; i < dataTable.length ; ++i) {%>
             <tr>
-                <td> <%= dataTable[i].ID %> </td>
+                <td> <%= dataTable[i].id %> </td>
                 <td> <%= dataTable[i].fullname %> </td>
                 <td> <%= dataTable[i].email %> </td>
                 <td> <%= dataTable[i].address %> </td>
@@ -44,6 +64,10 @@
                 <td> <%= dataTable[i].roleID %> </td>
                 <td> <%= dataTable[i].phoneNumber %> </td>
                 <td> <%= dataTable[i].positionID %> </td>
+                <td class = 'btn'> 
+                  <a href ='/EDIT-CRUD?id=<%= dataTable[i].id %>' class= 'btn-edit' type = "button">Edit</a>
+                  <button class = 'btn-del' type = "button">Delete</button>
+                </td>
             </tr>
         <% }%>
       </table>
