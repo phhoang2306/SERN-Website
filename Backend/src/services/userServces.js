@@ -26,7 +26,7 @@ let handleUserLogin = (data) => {
                     result.message = "Wrong password !";
                 }
             } else {
-                result.errCode = 1;
+                result.errCode = 3;
                 result.message = "Your account doesn't exist";
             }
             resolve(result)

@@ -12,7 +12,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            isshowed: false
+            isshowed: false,
+            errMessage:  '',
         }
     }
     handleOnChangeUsername = (event) =>{
@@ -27,8 +28,14 @@ class Login extends Component {
     }
     handleLogin = async () =>{
         try{
-            console.log(this.state.username)
-            await handleLogin(this.state.username, this.state.password);
+            this.setState({errMessage: ''});
+            let data = await handleLogin(this.state.username, this.state.password);
+            if (data.result.errCode != '0'){
+                this.setState({errMessage: data.result.message})
+            }
+            else{
+                this.setState({errMessage: "Login successfully"})
+            }
         }catch(e){
             console.log(e)
         }
@@ -61,6 +68,7 @@ class Login extends Component {
                                 </span>
                             </div>
                         </div>
+                        <div className='col-12 text-center' style ={{color:'red'}}> {this.state.errMessage} </div>
                         <div className='col-12'>
                             <button className = 'btn-login' onClick={() => this.handleLogin()}>Login</button>
                         </div>
