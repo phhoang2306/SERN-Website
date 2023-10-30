@@ -26,6 +26,16 @@
 
             .login-input{
                 margin: 15px 0;
+
+                .hide-password{
+                    position: relative;
+                }
+                .eye {
+                    position: absolute;
+                    top: 9px;
+                    right: 8px;
+                    cursor: pointer;
+                }
             }
 
             .btn-login{

@@ -11,6 +11,7 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            isshowed: false
         }
     }
     handleOnChangeUsername = (event) =>{
@@ -26,7 +27,11 @@ class Login extends Component {
     handleLogin = () =>{
         console.log(this.state.username + "   " + this.state.password)
     }
-
+    handleShowHidePassword = () => {
+        this.setState({
+            isshowed: !this.state.isshowed
+        })
+    }
     render() {
 
 
@@ -42,8 +47,13 @@ class Login extends Component {
                         </div>
                         <div className = 'col-12 from-group login-input'>
                             <label>Password</label>
-                            <input type='password'className='form-control'placeholder='Enter your password' value = {this.state.password}
-                            onChange ={(event) => this.handleOnChangePassword(event)}/>
+                            <div className='hide-password'>
+                                <input type={this.state.isshowed ? 'text' : 'password'}className='form-control'placeholder='Enter your password' value = {this.state.password}
+                                onChange ={(event) => this.handleOnChangePassword(event)} />
+                                <span onClick={() => {this.handleShowHidePassword()}}> 
+                                    <i id="toggler"className={this.state.isshowed ? "far fa-eye eye" : "far fa-eye-slash eye"}></i>
+                                </span>
+                            </div>
                         </div>
                         <div className='col-12'>
                             <button className = 'btn-login' onClick={() => this.handleLogin()}>Login</button>
