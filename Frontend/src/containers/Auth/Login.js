@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
+import { handleLogin } from '../../services/userServiceAPI';
 
 class Login extends Component {
     constructor(props) {
@@ -24,8 +25,13 @@ class Login extends Component {
             password: event.target.value,
         })
     }
-    handleLogin = () =>{
-        console.log(this.state.username + "   " + this.state.password)
+    handleLogin = async () =>{
+        try{
+            console.log(this.state.username)
+            await handleLogin(this.state.username, this.state.password);
+        }catch(e){
+            console.log(e)
+        }
     }
     handleShowHidePassword = () => {
         this.setState({
