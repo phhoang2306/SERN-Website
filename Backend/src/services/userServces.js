@@ -36,6 +36,28 @@ let handleUserLogin = (data) => {
     })
 }
 
+let handleGetAllUsers = (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let result = '';
+            if (userId === 'all'){
+                result = await db.User.findAll({
+                    attributes: {exclude: ['password']}
+                })
+            }
+            else if(userId !== ''){
+                result = await db.User.findOne({
+                    where: { id : userId},
+                    attributes: {exclude: ['password']}
+                })
+            }
+            resolve(result)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
 module.exports = {
     handleUserLogin: handleUserLogin,
+    handleGetAllUsers: handleGetAllUsers
 }

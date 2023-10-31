@@ -16,7 +16,16 @@ let handleLogin = async (req, res) => {
         result
     })
 }
-
+let handleGetAllUsers = async (req, res) =>{
+    let id = req.body.id;
+    let users = await userService.handleGetAllUsers(id);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Get information successfully!',
+        data: users
+    })
+}
 module.exports = {
-    handleLogin: handleLogin
+    handleLogin: handleLogin,
+    handleGetAllUsers: handleGetAllUsers
 }
