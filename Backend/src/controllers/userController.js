@@ -18,6 +18,13 @@ let handleLogin = async (req, res) => {
 }
 let handleGetAllUsers = async (req, res) =>{
     let id = req.body.id;
+    if (!id){
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Missing parameter',
+            data: {}
+        })
+    }
     let users = await userService.handleGetAllUsers(id);
     return res.status(200).json({
         errCode: 0,
