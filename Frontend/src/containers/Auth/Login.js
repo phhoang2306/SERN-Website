@@ -34,6 +34,7 @@ class Login extends Component {
                 this.setState({errMessage: data.result.message})
             }
             else{
+                this.props.userLoginSuccess(data.user)
                 this.setState({errMessage: "Login successfully"})
             }
         }catch(e){
@@ -98,8 +99,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        //userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };
 
