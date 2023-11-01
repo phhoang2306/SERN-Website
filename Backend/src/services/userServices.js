@@ -54,7 +54,8 @@ let handleGetAllUsers = (userId) => {
             let result = '';
             if (userId === 'all'){
                 result = await db.User.findAll({
-                    attributes: {exclude: ['password']}
+                    attributes: {exclude: ['password']},
+                    raw:true
                 })
             }
             else if(userId !== ''){
@@ -116,8 +117,35 @@ let handleCreateNewUser = (data) =>{
         }
     })
 }
-let handleEditUser = () =>{
-
+let handleEditUser = (data) =>{
+    return new Promise(async (resolve, reject) =>{
+        try{
+            let user = await db.User.findOne({
+                where: {id: data.id}
+            })
+            if(user){
+                user.fullname = data.fullname;
+                user.address = data.address;
+                user.gender = data.gender;
+                user.phoneNumber = data.phoneNumber;
+                user.roleID = data.roleID;
+                user.positionID = data.positionID;
+                await user.save()
+                resolve({
+                    errCode: 0,
+                    message: "Update User successfully!"
+                }) 
+            } else {
+                resolve({
+                    errCode: 2,
+                    message: "Can't find user"
+                })
+            }
+            
+        }catch(e){
+            reject(e)
+        }
+    })
 }
 let handleDeleteUser = (id) =>{
     return new Promise(async (resolve, reject) =>{

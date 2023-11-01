@@ -37,7 +37,13 @@ let handleCreateNewUser = async (req, res) => {
     return res.status(200).json(message);
 }
 let handleEditUser = async (req, res) => {
-    let message = await userService.handleEditUser(req.body);
+    if (!req.body.id){
+        return res.status(200).json({
+            errCode: 1,
+            message: "Missing required parameters!"
+        })
+    }
+    let message =  await userService.handleEditUser(req.body)
     return res.status(200).json(message);
 }
 let handleDeleteUser = async (req, res) => {
