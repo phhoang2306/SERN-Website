@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import {LANGUAGES} from '../../utils';
+import {changeLanguagae} from '../../store/actions'
 import './Header.scss'
 class Header extends Component {
-
+    changeLanguagae = (language) =>{
+        this.props.changeLanguagaeApp(language)
+    }
     render() {
         return (
             <React.Fragment>
@@ -33,8 +37,12 @@ class Header extends Component {
                         </div>
                         <div className='right-content'>
                             <div className='support-content'><i class="fa fa-question-circle"></i> <FormattedMessage id ='home.support'/></div>
-                            <div className='language-vn active'>VN</div>
-                            <div className='language-en active'>EN</div>
+                            <div className='language-vn active'>
+                                <span onClick={() => this.changeLanguagae(LANGUAGES.VI)}>VN</span>
+                            </div>
+                            <div className='language-en active'>
+                                <span onClick={() => this.changeLanguagae(LANGUAGES.EN)}>EN</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,6 +99,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguagaeApp: (language) => dispatch(changeLanguagae(language))
     };
 };
 
