@@ -46,10 +46,30 @@ class Header extends Component {
                         </div>
                     </div>
                      <div className = 'banner-content-down'>
-                        <div className = 'banner-options'>
+                        <div className = 'banner-option'>
                             <div className ='child-option'>
                                 <i className='far fa-hospital'></i>
                                 <div className='text'>Khám chuyên khoa</div>
+                            </div>
+                            <div className ='child-option'>
+                                <i class="fas fa-mobile-alt"></i>
+                                <div className='text'>Khám từ xa</div>
+                            </div>
+                            <div className ='child-option'>
+                                <i class="fas fa-procedures"></i>
+                                <div className='text'>Khám tổng quát</div>
+                            </div>
+                            <div className ='child-option'>
+                                <i className ="fa fa-stethoscope"></i>
+                                <div className='text'>Xét nghiệm y học</div>
+                            </div>
+                            <div className ='child-option'>
+                                <i className="fa fa-heart"></i>
+                                <div className='text'>Sức khỏe tinh thần</div>
+                            </div>
+                            <div className ='child-option'>
+                                <i class="fas fa-user-md"></i>
+                                <div className='text'>Khám nha khoa</div>
                             </div>
                         </div>
                     </div>
