@@ -44,17 +44,38 @@
         .right-content{
             width: 25%;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
-            i {
-                color: rgb(23, 157, 229);
+            .support-content{
+                padding-right: 30px;
+                font-size: 18px;
+                i {
+                    margin-right: 3px;
+                    color: rgb(23, 157, 229);
+                    cursor: pointer;
+                }
+            }
+            .language-vn{ 
+                cursor: pointer;
+                margin: 0 12px;
+                font-size: 18px;
+                &.active{
+                    color: orange;
+                }
+            }
+            .language-en{
+                cursor: pointer;
+                font-size: 18px;
+                &.active{
+                    color: blue;
+                }
             }
         }
     }
 }
 
 .banner-container{
-    background: url(../../assets/images/bookingcare-cover-4.jpg);
+    background-image: url(../../assets/images/bookingcare-cover-4.jpg);
     height: 530px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -63,8 +84,9 @@
     flex-direction: column;
 
     .banner-content-up{
-        height: 50%;
+        height: 70%;
         padding-top: 10px;
+        background-image: linear-gradient(rgba(0,0,0,0.25), rgba(255,255,255,0.1) );
         .banner-tittle-1{
             text-align: center;
             font-size: 30px;
@@ -109,18 +131,17 @@
     }
 
     .banner-content-down{
-        height: 50%;
-        margin-top: 50px;
-        align-items: center;
+        height: 30%;
+        align-items: flex-end;
+        background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.9), rgba(255,255,255,1) );
         .banner-option{
             display: flex;
             justify-content: center;
             .child-option{
                 width: 10%;
                 text-align: center;
-                margin: 90px 17px;
+                margin: 30px 17px;
                 i {
-                    //font-weight: 100;
                     align-items: center;
                     width: fit-content;
                     padding: 10px;
@@ -132,7 +153,9 @@
                     color:  rgb(23, 157, 229);
                 }
                 .text{
-                    font-size: 17px;
+                    margin-top: 13px;
+                    font-size: 19px;
+                    //width: 80%;
                     font-weight: 600;
                     cursor: pointer; 
                     &:hover{
