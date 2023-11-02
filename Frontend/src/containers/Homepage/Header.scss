@@ -59,18 +59,30 @@
                 cursor: pointer;
                 margin: 0 12px;
                 font-size: 18px;
+                opacity: 0.2;
                 &.active{
                     color: orange;
                     font-weight: 600;
+                    opacity: 1;
+                }
+                &:hover{
+                    opacity: 1;
                 }
             }
             .language-en{
                 cursor: pointer;
                 font-size: 18px;
+                opacity: 0.2;
                 &.active{
                     color: blue;
                     font-weight: 600;
+                    opacity: 1;
                 }
+                
+                &:hover{
+                    opacity: 1;
+                }
+                
             }
         }
     }
@@ -136,6 +148,7 @@
         height: 30%;
         align-items: flex-end;
         background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.9), rgba(255,255,255,1) );
+        //padding-bottom: 15px;
         .banner-option{
             display: flex;
             justify-content: center;

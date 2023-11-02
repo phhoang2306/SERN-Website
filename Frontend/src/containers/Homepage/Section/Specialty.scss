@@ -1,0 +1,82 @@
+.section-specialty{
+    margin-top:30px;
+    height: 330px;
+    background: #f5f5f5;
+
+    .specialty-container{
+        margin: 0 100px;
+        display: flex;
+        flex-direction: column;
+        .header{
+            text-align: center;
+            height: 60px;
+            margin-bottom: 50px;
+            padding-top: 20px;
+            .tittle{
+                font-size: 30px;
+                font-weight: 600;
+            }
+            .btn-select{
+                font-size: 15px;
+                font-weight: 600;
+                float: right;
+                background-color: #ebebeb;
+                color: #282e41;
+                display: block;
+                border: none;
+                text-transform: uppercase;
+                padding: 8px 10px;
+                &:hover{
+                    color: #fff;
+                    background:  #f7d800;
+                    cursor: pointer;
+                }
+            }
+        }
+        .body{
+            .slider-content{
+                .image-content{
+                    background: url(../../../assets/images/specialty/112457-co-xuong-khop.webp);
+                    width: 278px;
+                    height: 150px;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-color: #eee;
+                }
+            }
+            .slick-prev:before{
+                font-family: FontAwesome !important;
+                color: red;
+                font-size: 25px;
+            }
+            .slick-prev{
+                left: -20px !important;
+                z-index: 1000;
+                height: 48px;
+                width: 44px;
+                background: #d7d7d7;
+                border: 2px solid #d7d7d7;
+                &:hover {
+                    background: #f2f0f0;
+                }
+            
+            }
+            .slick-next:before{
+                font-family: FontAwesome !important;
+                color: red;
+                font-size: 25px;
+            }
+            .slick-next{
+                right: -20px !important;
+                height: 48px;
+                width: 44px;
+                background: #d7d7d7;
+                border: 2px solid #d7d7d7;
+                &:hover {
+                    background: #f2f0f0;
+                }
+            }
+        }
+    }
+}
