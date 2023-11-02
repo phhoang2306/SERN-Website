@@ -1,0 +1,118 @@
+.header-container{
+    height:90px;
+    color: black;
+    width: 100%;
+    padding: 0 30px;
+    
+    .header-content{
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        .left-content{
+            width: 25%;
+            display: flex;
+            align-items: center;
+
+            .header-logo{
+                background: url(../../assets/images/logo-bookingcare-2020.svg) center center no-repeat;
+                height: 80%;
+                width:  80%;
+            }
+            i {
+                font-size: 25px;
+                padding-right: 20px;
+                color: grey;
+                cursor: pointer;
+            }
+        }
+        
+        .center-content{
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            .child-content{
+                .sub-tittle{
+                    font-size: 12px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .right-content{
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+                color: blue;
+            }
+        }
+    }
+}
+
+.banner-container{
+    background: url(../../assets/images/bookingcare-cover-4.jpg);
+    height: 530px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+
+    .banner-content-up{
+        height: 50%;
+        padding-top: 10px;
+        .banner-tittle-1{
+            text-align: center;
+            font-size: 30px;
+            color: white;
+            padding-top: 20px;
+            padding-bottom: 8px;
+            text-shadow: 1px 1px 1px #333;
+
+        }
+
+        .banner-tittle-2{
+            text-align: center;
+            font-size: 45px;
+            font-weight: 600;
+            color: white;
+            padding-bottom: 30px;
+            text-shadow: 1px 1px 1px #333;
+            
+        }
+        .banner-search{
+            padding-top: 15px;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            align-items: center;
+            padding: 10px;
+            width: 510px;
+            border-radius: 50px;
+            background-color: #f7d800;
+            i {
+                margin: 0 5px;
+                font-size: 25px;
+            }
+            input {
+                height: 30px;
+                width: 450px;
+                background-color: transparent;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
+    .banner-container-down{
+        height: 50%;
+        
+        .banner-options{
+
+        }
+    }
+}
