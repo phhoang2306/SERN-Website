@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import {LANGUAGES} from '../../utils';
-import {changeLanguagae} from '../../store/actions'
+import {changeLanguage} from '../../store/actions'
 import './Header.scss'
 class Header extends Component {
-    changeLanguagae = (language) =>{
-        this.props.changeLanguagaeApp(language)
+
+    handlechangeLanguage = (language) =>{
+        this.props.changeLanguageApp(language)
     }
     render() {
+        let language = this.props.language;
+
         return (
             <React.Fragment>
                 <div className='header-container'>
@@ -37,11 +40,11 @@ class Header extends Component {
                         </div>
                         <div className='right-content'>
                             <div className='support-content'><i class="fa fa-question-circle"></i> <FormattedMessage id ='home.support'/></div>
-                            <div className='language-vn active'>
-                                <span onClick={() => this.changeLanguagae(LANGUAGES.VI)}>VN</span>
+                            <div className={language === LANGUAGES.VI ? 'language-vi active': 'language-vi'}>
+                                <span onClick={() => this.handlechangeLanguage(LANGUAGES.VI)}>VI</span>
                             </div>
-                            <div className='language-en active'>
-                                <span onClick={() => this.changeLanguagae(LANGUAGES.EN)}>EN</span>
+                            <div className={language === LANGUAGES.EN ? 'language-en active': 'language-en'}>
+                                <span onClick={() => this.handlechangeLanguage(LANGUAGES.EN)}>EN</span>
                             </div>
                         </div>
                     </div>
@@ -99,7 +102,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeLanguagaeApp: (language) => dispatch(changeLanguagae(language))
+        changeLanguageApp : (language) => dispatch(changeLanguage(language))
     };
 };
 
