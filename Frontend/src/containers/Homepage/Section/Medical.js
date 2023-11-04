@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-class Specialty extends Component {
+class Medical extends Component {
 
     handlechangeLanguage = (language) =>{
         this.props.changeLanguageApp(language)
@@ -17,7 +17,7 @@ class Specialty extends Component {
             slidesToScrol: 2
         };
         return (
-            <div className='section-container specialty'>
+            <div className='section-container'>
                 <div className='section-content'>
                     <div className = 'header'>
                         <span className = "tittle">Chuyên khoa phổ biến</span>
@@ -70,4 +70,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(Medical);
