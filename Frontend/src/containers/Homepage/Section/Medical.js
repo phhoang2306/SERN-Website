@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,47 +10,47 @@ class Medical extends Component {
         this.props.changeLanguageApp(language)
     }
     render() {
-        let settings = {
-            dots: false,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 4,
-            slidesToScrol: 2
-        };
         return (
             <div className='section-container'>
                 <div className='section-content'>
                     <div className = 'header'>
-                        <span className = "tittle">Chuyên khoa phổ biến</span>
-                        <button className= 'btn-select'>Xem thêm</button>
+                        <span className = "tittle"><FormattedMessage id ='medical.tittle'/></span>
+                        <button className= 'btn-select'><FormattedMessage id ='common.btn_content'/></button>
                     </div>
                     <div className ='body'>
-                        <Slider {...settings}>
+                    <Slider {...this.props.settings}>
                             <div className='slider-content'>
-                                <div className = 'image-content'></div>
-                                <span>Cơ xương khớp</span>
+                                <div className = 'image-content medical_1'></div>
+                                <div className='text-content'><FormattedMessage id ='medical.medical_1'/></div>
                             </div>
-                            <div className='image-custome'>
-                                <h1>2</h1>
+                            <div className='slider-content'>
+                                <div className = 'image-content medical_2'></div>
+                                <div className='text-content'><FormattedMessage id ='medical.medical_2'/></div>
                             </div>
-                            <div className='image-custome'>
-                                <h1>3</h1>
+                            <div className='slider-content'>
+                                <div className = 'image-content medical_3'></div>
+                                <div className='text-content'><FormattedMessage id ='medical.medical_3'/></div>
                             </div>
-                            <div className='image-custome'>
-                                <h1>4</h1>
-                            </div> 
-                            <div className='image-custome'>
-                                <h1>5</h1>
+                            <div className='slider-content'>
+                                <div className = 'image-content medical_4'></div>
+                                <div className='text-content'><FormattedMessage id ='medical.medical_4'/></div>
                             </div>
-                            <div className='image-custome'>
-                                <h1>6</h1>
+                            <div className='slider-content'>
+                                <div className = 'image-content medical_5'></div>
+                                <div className='text-content'><FormattedMessage id ='medical.medical_5'/>t</div>
                             </div>
-                            <div className='image-custome'>
-                                <h1>7</h1>
+                            <div className='slider-content'>
+                                <div className = 'image-content medical_6'></div>
+                                <div className='text-content'><FormattedMessage id ='medical.medical_6'/></div>
                             </div>
-                            <div className='image-custome'>
-                                <h1>8</h1>
-                            </div>  
+                            <div className='slider-content'>
+                                <div className = 'image-content medical_7'></div>
+                                <div className='text-content'><FormattedMessage id ='medical.medical_7'/></div>
+                            </div>
+                            <div className='slider-content'>
+                                <div className = 'image-content medical_8'></div>
+                                <div className='text-content'>H<FormattedMessage id ='medical.medical_8'/></div>
+                            </div>
                         </Slider>
                     </div>
                 </div>

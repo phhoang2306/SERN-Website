@@ -28,6 +28,7 @@
                 border: none;
                 text-transform: uppercase;
                 padding: 8px 10px;
+                border-radius: 10%;
                 &:hover{
                     color: #fff;
                     background:  #f7d800;
@@ -37,19 +38,123 @@
         }
         .body{
             .slider-content{
+                margin: 0 auto;
                 .image-content{
-                    background: url(../../assets/images/specialty/112457-co-xuong-khop.webp);
-                    width: 278px;
+                    width:300px;
                     height: 150px;
-                    background-position: center center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
                     background-color: #eee;
+                    border-radius: 8%;
+                    &.specialty_1{
+                        background: url(../../assets/images/specialty/112457-co-xuong-khop.webp);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.specialty_2{
+                        background: url(../../assets/images/specialty/thankinh.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.specialty_3{
+                        background: url(../../assets/images/specialty/viemgan.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.specialty_4{
+                        background: url(../../assets/images/specialty/timmach.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.specialty_5{
+                        background: url(../../assets/images/specialty/taimuihong.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.specialty_6{
+                        background: url(../../assets/images/specialty/cotsong.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.specialty_7{
+                        background: url(../../assets/images/specialty/yhoccotruyenb.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.specialty_8{
+                        background: url(../../assets/images/specialty/chamcuu.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.medical_1{
+                        background: url(../../assets/images/medical/logo-vietduc.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.medical_2{
+                        background: url(../../assets/images/medical/logo-choray.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.medical_3{
+                        background: url(../../assets/images/medical/logo-yduoc.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.medical_4{
+                        background: url(../../assets/images/medical/logo-quandoi.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover
+                    }
+                    &.medical_5{
+                        background: url(../../assets/images/medical/logo-hungviet.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.medical_6{
+                        background: url(../../assets/images/medical/logo-med.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.medical_7{
+                        background: url(../../assets/images/medical/logo-diag.png);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.medical_8{
+                        background: url(../../assets/images/medical/logo-thucuc.png);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+
+                }
+                .text-content{
+                    margin: 0 auto; 
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: 600;
+                    &:hover {
+                        color: #f7d800;
+                    }
                 }
             }
             .slick-prev:before{
                 font-family: FontAwesome !important;
-                color: red;
+                color: black;
                 font-size: 25px;
             }
             .slick-prev{
@@ -66,7 +171,7 @@
             }
             .slick-next:before{
                 font-family: FontAwesome !important;
-                color: red;
+                color: black;
                 font-size: 25px;
             }
             .slick-next{

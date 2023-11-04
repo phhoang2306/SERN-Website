@@ -21,7 +21,30 @@
         "child-5": "Sức khỏe tinh thần",
         "child-6": "Khám nha khoa"
     },
+    "specialty": {
+        "tittle": "Chuyên khoa phổ biến",
+        "specialty_1": "Cơ xương khớp",
+        "specialty_2": "Thần kinh",
+        "specialty_3": "Tiêu hóa",
+        "specialty_4": "Tim mạch",
+        "specialty_5": "Tai mũi họng",
+        "specialty_6": "Cột sống",
+        "specialty_7": "Y học cổ truyền",
+        "specialty_8": "Châm cứu"
+    },
+    "medical": {
+        "tittle": "Cơ sở y tế nổi bật",
+        "medical_1": "Bệnh viện Hữu nghị Việt Đức",
+        "medical_2": "Bệnh viện Chợ Rẫy",
+        "medical_3": "Bệnh viện đại học Y Dược 1",
+        "medical_4": "Bệnh viện Trung Ương 108",
+        "medical_5": "Bệnh viện ung bướu Hưng Việt",
+        "medical_6": "Hệ thống y tế Medlatec",
+        "medical_7": "Trung tâm xét nghiệm Diag",
+        "medical_8": "Hệ thống y tế Thu Cúc TCI"
+    },
     "common": {
+        "btn_content": "Xem thêm",
         "add": "Thêm",
         "edit": "Sửa",
         "delete": "Xóa",

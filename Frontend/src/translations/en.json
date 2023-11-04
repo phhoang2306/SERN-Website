@@ -20,7 +20,30 @@
         "child-5": "Mental health",
         "child-6": "Dental examination"
     },
+    "specialty": {
+        "tittle": "Popular Specialty",
+        "specialty_1": "Musculoskeletal",
+        "specialty_2": "Neurology",
+        "specialty_3": "Digestion",
+        "specialty_4": "Heart",
+        "specialty_5": "Ear Nose Throat",
+        "specialty_6": "Spine",
+        "specialty_7": "Traditional Medicine",
+        "specialty_8": "Acupuncture"
+    },
+    "medical": {
+        "tittle": "Popular Medical Facility",
+        "medical_1": "Viet Duc Friendship Hospital",
+        "medical_2": "Cho Ray Hospital",
+        "medical_3": "University Hospital of Medicine and Pharmacy 1",
+        "medical_4": "Central Hospital 108",
+        "medical_5": "Hung Viet Oncology Hospital",
+        "medical_6": "Medlatec Medical System",
+        "medical_7": "Diag Testing Center",
+        "medical_8": "Thu Cuc TCI Medical System"
+    },
     "common": {
+        "btn_content": "See more",
         "add": "Add",
         "edit": "Edit",
         "delete": "Delete",

@@ -7,11 +7,18 @@ import './Homepage.scss';
 class Homepage extends Component {
 
     render() {
+        let settings = {
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScrol: 2
+        };
         return (
             <div>
                 <Header/>
-                <Specialty/>
-                <Medical/>
+                <Specialty  settings = {settings}/>
+                <Medical settings = {settings} />
             </div>
         );
     }
