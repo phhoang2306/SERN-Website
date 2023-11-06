@@ -1,36 +1,50 @@
 .section-container{
-    margin-top:30px;
-    height: 330px;
     &.specialty {
+        margin-top:10px;    
         background: #f5f5f5;
+        height: 290px;
+    }
+    &.medical{
+        margin-top:10px;
+        height: 280px;
     }
     &.doctor{
         background-image: url(../../assets/images/doctor/140311-background5.png);
         padding-top: 20px;
         height: 400px;
     }
-
+    &.handbook {
+        background: #f5f5f5;
+        height: 350px;
+    }   
     .section-content{
         margin: 0 100px;
         display: flex;
         flex-direction: column;
         .header{
-            text-align: center;
+            //text-align: center;
             height: 60px;
             &.specialty{
                 padding-top: 30px;
+                margin-bottom: 30px; 
+            }
+            &.handbook {
+                padding-top: 25px;
                 margin-bottom: 30px;
             }
             .tittle{
                 font-size: 23px;
                 font-weight: 600;
+                &:hover{
+                    color: rgb(52, 146, 158);
+                }
             }
             .btn-select{
                 font-size: 15px;
                 font-weight: 600;
                 float: right;
-                background-color: #ebebeb;
-                color: #282e41;
+                background-color: rgb(218, 243, 246);
+                color:  rgb(52, 146, 158);
                 display: block;
                 border: none;
                 text-transform: uppercase;
@@ -38,7 +52,7 @@
                 border-radius: 10%;
                 &:hover{
                     color: #fff;
-                    background:  #f7d800;
+                    background:   rgb(52, 146, 158);
                     cursor: pointer;
                 }
             }
@@ -166,25 +180,141 @@
                         background-size: cover;
                         border-radius: 50%;
                     }
-
+                    &.doctor_2{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/103447-bs-hong-anh.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
+                    &.doctor_3{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/103851-bs-nguyen-thanh-tuan.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
+                    &.doctor_4{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/142313-bs-tran-huu-binh.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
+                    &.doctor_5{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/144258pho-giao-su-nguyen-thanh-binh-c.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
+                    &.doctor_6{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/162528-bs-nguyen-thi-thanh-thuy.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
+                    &.doctor_7{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/165611-4-bscki-nguyen-thi-thuy-nga.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
+                    &.doctor_8{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/174603-ts-bs-pham-chi-lang.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
+                    &.handbook_1{
+                        margin-left: 70px;
+                        width: 500px;
+                        height: 200px;
+                        margin-bottom: 10px;
+                        background: url(../../assets/images/handbook/114221-dinh-ta-xua.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.handbook_2{
+                        margin-left: 70px;
+                        width: 500px;
+                        height: 200px;
+                        margin-bottom: 10px;
+                        background: url(../../assets/images/handbook/120726-rung-reu-phong-2.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.handbook_3{
+                        margin-left: 70px;
+                        width: 500px;
+                        height: 200px;
+                        margin-bottom: 10px;
+                        background: url(../../assets/images/handbook/183808-ban-tiep-tuc-leo.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.handbook_4{
+                        margin-left: 70px;
+                        width: 500px;
+                        height: 200px;
+                        margin-bottom: 10px;
+                        background: url(../../assets/images/handbook/235130-teamanh-dinh-ta-xua.jpg);
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
                 }
+            
                 .text-content{
                     margin: 0 auto; 
                     text-align: center;
                     font-size: 18px;
                     font-weight: 600;
                     &:hover {
-                        color: #f7d800;
+                        color: rgb(52, 146, 158)
+                    }
+                    &.handbook{
+                        font-size: 16px;
                     }
                 }
                 .name-doctor{             
                     font-size: 18px;
                     font-weight: 600;
+                    &:hover {
+                        color: rgb(52, 146, 158);
+                    }
                 }
             }
             .slick-prev:before{
                 font-family: FontAwesome !important;
-                color: black;
+                color:  rgb(52, 146, 158);
                 font-size: 25px;
             }
             .slick-prev{
@@ -192,10 +322,12 @@
                 z-index: 1000;
                 height: 48px;
                 width: 44px;
-                background: #d7d7d7;
-                border: 2px solid #d7d7d7;
-                &:hover {
-                    background: #f2f0f0;
+                background-color: rgb(218, 243, 246);
+                border: 2px solid rgb(52, 146, 158);
+                border-radius: 50%;
+                &:hover{
+                    background:   rgb(236, 249, 250);
+                    border-color: rgb(89, 150, 158);
                 }
             
             }
@@ -208,10 +340,12 @@
                 right: -20px !important;
                 height: 48px;
                 width: 44px;
-                background: #d7d7d7;
-                border: 2px solid #d7d7d7;
-                &:hover {
-                    background: #f2f0f0;
+                background-color: rgb(218, 243, 246);
+                border: 2px solid rgb(52, 146, 158);
+                border-radius: 50%;
+                &:hover{
+                    background:   rgb(236, 249, 250);
+                    border-color: rgb(89, 150, 158);
                 }
             }
         }

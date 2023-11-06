@@ -30,7 +30,7 @@ class Doctor extends Component {
                             </div>
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
-                                    <div className = 'image-content doctor_1'></div>
+                                    <div className = 'image-content doctor_2'></div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'><FormattedMessage id ='doctor.name_2'/></div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_2'/></div>
@@ -39,7 +39,7 @@ class Doctor extends Component {
                             </div>
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
-                                    <div className = 'image-content doctor_1'></div>
+                                    <div className = 'image-content doctor_3'></div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'><FormattedMessage id ='doctor.name_3'/></div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_3'/></div>
@@ -48,7 +48,7 @@ class Doctor extends Component {
                             </div>
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
-                                    <div className = 'image-content doctor_1'></div>
+                                    <div className = 'image-content doctor_4'></div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'><FormattedMessage id ='doctor.name_4'/></div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_4'/></div>
@@ -57,7 +57,7 @@ class Doctor extends Component {
                             </div>
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
-                                    <div className = 'image-content doctor_1'></div>
+                                    <div className = 'image-content doctor_5'></div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'><FormattedMessage id ='doctor.name_5'/></div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_5'/></div>
@@ -75,7 +75,7 @@ class Doctor extends Component {
                             </div>
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
-                                    <div className = 'image-content doctor_1'></div>
+                                    <div className = 'image-content doctor_7'></div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'><FormattedMessage id ='doctor.name_7'/></div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_7'/></div>
@@ -84,7 +84,7 @@ class Doctor extends Component {
                             </div>
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
-                                    <div className = 'image-content doctor_7'></div>
+                                    <div className = 'image-content doctor_8'></div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'><FormattedMessage id ='doctor.name_8'/></div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_8'/></div>

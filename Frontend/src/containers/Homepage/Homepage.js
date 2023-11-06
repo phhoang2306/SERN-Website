@@ -4,6 +4,8 @@ import Header from './Header';
 import Specialty from './Section/Specialty';
 import Medical from './Section/Medical';
 import Doctor from './Section/Doctor';
+import Handbook from './Section/Handbook';
+import Footer from './Footer';
 import './Homepage.scss';
 class Homepage extends Component {
 
@@ -21,6 +23,8 @@ class Homepage extends Component {
                 <Specialty  settings = {settings}/>
                 <Medical settings = {settings} />
                 <Doctor settings = {settings} />
+                <Handbook/>
+                <Footer/>
             </div>
         );
     }

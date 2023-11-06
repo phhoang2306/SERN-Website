@@ -11,7 +11,7 @@ class Medical extends Component {
     }
     render() {
         return (
-            <div className='section-container'>
+            <div className='section-container medical'>
                 <div className='section-content'>
                     <div className = 'header'>
                         <span className = "tittle"><FormattedMessage id ='medical.tittle'/></span>
