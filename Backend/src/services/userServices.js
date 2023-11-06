@@ -47,7 +47,6 @@ let handleUserLogin = (data) => {
         }
     })
 }
-
 let handleGetAllUsers = (userId) => {
     return new Promise(async (resolve, reject) => {
         try{
@@ -160,11 +159,26 @@ let handleDeleteUser = (id) =>{
                 errCode: 0, 
                 message: "Delete user successfully!"
             })
-        })}
+    })
+}
+let handleGetAllCodes = () =>{
+    return new Promise(async (resolve, reject) =>{
+        try{
+            let res = {}
+            let allcode = await db.Allcode.findAll();
+            res.errCode = 0,
+            res.data = allcode;
+            resolve(res);
+        } catch(e){
+            reject(e);
+        }
+    })
+}
 module.exports = {
     handleUserLogin: handleUserLogin,
     handleGetAllUsers: handleGetAllUsers,
     handleCreateNewUser: handleCreateNewUser,
     handleEditUser: handleEditUser,
-    handleDeleteUser: handleDeleteUser
+    handleDeleteUser: handleDeleteUser,
+    handleGetAllCodes: handleGetAllCodes
 }
