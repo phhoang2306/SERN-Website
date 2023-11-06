@@ -43,6 +43,25 @@
         "medical_7": "Trung tâm xét nghiệm Diag",
         "medical_8": "Hệ thống y tế Thu Cúc TCI"
     },
+    "doctor":{
+        "tittle": "Bác sĩ nổi bật",
+        "name_1": "Bác sĩ chuyên khoa Trần Minh Khuyên",
+        "sub_1": "Sức khỏe tâm thần, tư vấn, trị liệu tâm lí",
+        "name_2": "Phó Giáo sư, Tiến sĩ Bác sĩ Nguyễn Thi Hùng",
+        "sub_2": "Thần kinh",
+        "name_3": "Bác sĩ cao cấp Nguyễn Duy Hưng",
+        "sub_3": "Da liễu",
+        "name_4": "Thạc sĩ Bác Sĩ Nguyễn Thi Phú",
+        "sub_4": "Sức khỏe tâm thần",
+        "name_5": "Bác sĩ chuyên khoa I Lâm Thùy Nga",
+        "sub_5": "Thần kinh",
+        "name_6": "Bác sĩ Nguyễn Thị Hoài An",
+        "sub_6": "Tai Mũi Họng, Nhi khoa",
+        "name_7": "Giáo sư, Tiến sĩ Nguyễn Văn Thông",
+        "sub_7": "Thần kinh",
+        "name_8": "Phó Giáo Sư, Tiến sĩ Phạm Văn Tần",
+        "sub_8": "Chuyên khoa Mắt"
+    },
     "common": {
         "btn_content": "Xem thêm",
         "add": "Thêm",

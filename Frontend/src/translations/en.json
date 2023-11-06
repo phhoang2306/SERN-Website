@@ -42,6 +42,25 @@
         "medical_7": "Diag Testing Center",
         "medical_8": "Thu Cuc TCI Medical System"
     },
+    "doctor":{
+        "tittle": "Outstanding Doctor",
+        "name_1": "Specialist Doctor Tran Minh Khuyen",
+        "sub_1": "Mental health, counseling, psychotherapy",
+        "name_2": "Associate Professor, Doctor Nguyen Thi Hung",
+        "sub_2": "Neurology",
+        "name_3": "Senior Doctor Nguyen Duy Hung",
+        "sub_3": "Dermatology",
+        "name_4": "Master Doctor Nguyen Thi Phu",
+        "sub_4": "Mental health",
+        "name_5": "Specialist I Lam Thuy Nga",
+        "sub_5": "Neurology",
+        "name_6": "Doctor Nguyen Thi Hoai An",
+        "sub_6": "Ear, Nose and Throat, Pediatrics",
+        "name_7": "Professor, Dr. Nguyen Van Thong",
+        "sub_7": "Neurology",
+        "name_8": "Associate Professor, Dr. Pham Van Tan",
+        "sub_8": "Ophthalmology"
+    },
     "common": {
         "btn_content": "See more",
         "add": "Add",

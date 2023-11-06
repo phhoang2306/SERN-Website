@@ -13,7 +13,7 @@ class Specialty extends Component {
         return (
             <div className='section-container specialty'>
                 <div className='section-content'>
-                    <div className = 'header'>
+                    <div className = 'header specialty'>
                         <span className = "tittle"><FormattedMessage id ='specialty.tittle'/></span>
                         <button className= 'btn-select'><FormattedMessage id ='common.btn_content'/></button>
                     </div>

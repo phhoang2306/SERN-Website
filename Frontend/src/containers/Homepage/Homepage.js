@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import Specialty from './Section/Specialty';
 import Medical from './Section/Medical';
+import Doctor from './Section/Doctor';
 import './Homepage.scss';
 class Homepage extends Component {
 
@@ -19,6 +20,7 @@ class Homepage extends Component {
                 <Header/>
                 <Specialty  settings = {settings}/>
                 <Medical settings = {settings} />
+                <Doctor settings = {settings} />
             </div>
         );
     }

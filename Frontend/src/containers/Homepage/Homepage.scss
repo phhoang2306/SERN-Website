@@ -4,6 +4,11 @@
     &.specialty {
         background: #f5f5f5;
     }
+    &.doctor{
+        background-image: url(../../assets/images/doctor/140311-background5.png);
+        padding-top: 20px;
+        height: 400px;
+    }
 
     .section-content{
         margin: 0 100px;
@@ -12,10 +17,12 @@
         .header{
             text-align: center;
             height: 60px;
-            margin-bottom: 50px;
-            padding-top: 20px;
+            &.specialty{
+                padding-top: 30px;
+                margin-bottom: 30px;
+            }
             .tittle{
-                font-size: 30px;
+                font-size: 23px;
                 font-weight: 600;
             }
             .btn-select{
@@ -39,6 +46,15 @@
         .body{
             .slider-content{
                 margin: 0 auto;
+                .doctor-border{
+                    height: 300px;
+                    width: 300px;
+                    border: 3px solid #cac3c3a6;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border-radius: 10%;
+                }
                 .image-content{
                     width:300px;
                     height: 150px;
@@ -140,6 +156,16 @@
                         background-repeat: no-repeat;
                         background-size: cover;
                     }
+                    &.doctor_1{
+                        margin-top: 10px;
+                        background: url(../../assets/images/doctor/091359-bac-sy-kim-chi-cao-thang.jpg);
+                        background-position: center center;
+                        height: 200px;
+                        width: 200px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        border-radius: 50%;
+                    }
 
                 }
                 .text-content{
@@ -150,6 +176,10 @@
                     &:hover {
                         color: #f7d800;
                     }
+                }
+                .name-doctor{             
+                    font-size: 18px;
+                    font-weight: 600;
                 }
             }
             .slick-prev:before{
