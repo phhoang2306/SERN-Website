@@ -14,7 +14,7 @@ class Header extends Component {
 
         return (
             <React.Fragment>
-                <div className='header-container'>
+                <div className='header-container-1'>
                     <div className='header-content'>
                         <div className='left-content'>
                             <i class="fa fa-bars"></i>
