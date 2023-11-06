@@ -6,9 +6,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 class Medical extends Component {
 
-    handlechangeLanguage = (language) =>{
-        this.props.changeLanguageApp(language)
-    }
     render() {
         return (
             <div className='section-container medical'>

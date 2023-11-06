@@ -5,6 +5,7 @@ import Specialty from './Section/Specialty';
 import Medical from './Section/Medical';
 import Doctor from './Section/Doctor';
 import Handbook from './Section/Handbook';
+import About from './About';
 import Footer from './Footer';
 import './Homepage.scss';
 class Homepage extends Component {
@@ -24,6 +25,7 @@ class Homepage extends Component {
                 <Medical settings = {settings} />
                 <Doctor settings = {settings} />
                 <Handbook/>
+                <About/>
                 <Footer/>
             </div>
         );

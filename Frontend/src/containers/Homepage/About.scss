@@ -1,0 +1,35 @@
+
+.about-container{
+    height: 470px;
+    .about-header{
+        padding: 7px 120px;
+        span{
+            font-size: 23px;
+            font-weight: 600;
+            &:hover{
+                color: rgb(52, 146, 158);
+            }
+        }
+    }
+    .about-body{
+        gap: 15px;
+        display: flex;
+        width: 100%;
+        .content-left{
+            width: 60%;
+            iframe{
+                width: 85%;
+                margin-left: 130px;
+            }
+        }
+        .content-right{
+            width: 30%;
+            text-align: justify;
+            font-size: 14px;
+            font-weight: 500;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
