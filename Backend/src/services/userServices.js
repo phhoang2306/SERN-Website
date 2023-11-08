@@ -161,11 +161,18 @@ let handleDeleteUser = (id) =>{
             })
     })
 }
-let handleGetAllCodes = () =>{
+let handleGetAllCodes = (typeInput) =>{
     return new Promise(async (resolve, reject) =>{
         try{
             let res = {}
-            let allcode = await db.Allcode.findAll();
+            if(!typeInput){
+                res.errCode = 1,
+                res.message = "Missing required paramters"
+                resolve(res);
+            }
+            let allcode = await db.Allcode.findAll({
+                where: {type : typeInput}
+            });
             res.errCode = 0,
             res.data = allcode;
             resolve(res);
