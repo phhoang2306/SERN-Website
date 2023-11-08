@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
@@ -30,11 +30,11 @@ class Login extends Component {
         try{
             this.setState({errMessage: ''});
             let data = await handleLogin(this.state.username, this.state.password);
-            if (data.result.errCode != '0'){
+            if (data.result.errCode !== '0'){
                 this.setState({errMessage: data.result.message})
             }
-            else{
-                this.props.userLoginSuccess(data.user)
+            if(data.result.errCode === 0 && data){
+                this.props.userLoginSuccess(data.result.data);
                 this.setState({errMessage: "Login successfully"})
             }
         }catch(e){
@@ -47,8 +47,6 @@ class Login extends Component {
         })
     }
     render() {
-
-
         return (
             <div className = 'login-background'>
                 <div className = 'login-container'>

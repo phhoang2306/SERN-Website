@@ -8,7 +8,8 @@
         "choose-doctor": "Chọn bác sĩ giỏi",
         "package": "Gói khám",
         "check-health": "Khám sức khỏe tổng quát",
-        "support": "Hỗ trợ"
+        "support": "Hỗ trợ",
+        "welcome": "Xin chào"
     },
     "banner":{
         "tittle-1": "NỀN TẢNG Y TẾ",
@@ -103,9 +104,7 @@
             "system-administrator": {
                 "header": "Quản trị hệ thống",
                 "user-manage": "Quản lý người sử dụng",
-                "product-manage": "Quản lý gói",
-                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
-            },
+                "user-redux": "Quản lý người dùng redux"            },
             "system-parameter": {
                 "header": "Tham số hệ thống"
             }

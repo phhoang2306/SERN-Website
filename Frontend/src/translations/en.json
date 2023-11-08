@@ -8,7 +8,9 @@
         "choose-doctor": "Choose a good doctor",
         "package": "Checkup package",
         "check-health": "General health check",
-        "support": "Support"
+        "support": "Support",
+        "welcome": "Welcome"
+
     },
     "banner":{
         "tittle-1": "MEDICAL BACKGROUND",
@@ -102,8 +104,7 @@
             "system-administrator": {
                 "header": "System Administrator",
                 "user-manage": "User manage",
-                "product-manage": "Package manage",
-                "register-package-group-or-account": "Register service package for group/account"
+                "user-redux": "Quản lý người dùng redux" 
             },
             "system-parameter": {
                 "header": "System-parameter"
