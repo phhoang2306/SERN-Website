@@ -15,14 +15,13 @@ class Header extends Component {
     render() {
         let language = this.props.language;
         const { processLogout, userInfo } = this.props;
-        console.log(userInfo);
         return (
             <div className="header-container">
                 <div className="header-tabs-container">
                     <Navigator menus={adminMenu} />
                 </div>
                 <div className='language'>
-                    <span className='welcome-user'><FormattedMessage id="home.welcome"/></span>
+                    <span className='welcome-user'><FormattedMessage id="home.welcome"/>userInfo.fullname</span>
                     <span className={language === LANGUAGES.EN ? 'language-en active': 'language-en'}
                     onClick={() => this.handlechangeLanguage(LANGUAGES.EN)}>EN
                     </span>
