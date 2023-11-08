@@ -14,7 +14,6 @@ const persistCommonConfig = {
     stateReconciler: autoMergeLevel2,
 };
  
-
 const userPersistConfig = {
     ...persistCommonConfig,
     key: 'user',

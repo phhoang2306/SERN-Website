@@ -21,7 +21,7 @@ class Header extends Component {
                     <Navigator menus={adminMenu} />
                 </div>
                 <div className='language'>
-                    <span className='welcome-user'><FormattedMessage id="home.welcome"/>userInfo.fullname</span>
+                    <span className='welcome-user'><FormattedMessage id="home.welcome"/>, {userInfo && userInfo.fullname ? userInfo.fullname :''} !</span>
                     <span className={language === LANGUAGES.EN ? 'language-en active': 'language-en'}
                     onClick={() => this.handlechangeLanguage(LANGUAGES.EN)}>EN
                     </span>
