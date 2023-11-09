@@ -2,29 +2,45 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import {LANGUAGES} from '../../../utils';
-import {handlegetAllCodes} from '../../../services/userServiceAPI';
+import * as actions from "../../../store/actions"
 import "./UserRedux.scss"
+
 class UserRedux extends Component {
     constructor(props){
         super(props);
         this.state = {
-            gender: []
+            isLoadingL: false,
+            genders: [],
+            roles: [],
+            positions: []
         }
     }
 
     async componentDidMount() {
-        try{
-            let res = await handlegetAllCodes('gender');
-            if(res && res.errCode ===0 ){
-                this.setState({gender: res.data})
-            }
-        }catch(e){
-            console.log(e)
+       this.props.getGenderStart()
+       this.props.getRolerStart()
+       this.props.getPositionStart()
+    }
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if(prevProps.genders !== this.props.genders){
+            this.setState({
+                genders: this.props.genders,
+            })
+        }
+        if(prevProps.roles !== this.props.roles){
+            this.setState({
+                roles: this.props.roles,
+            })
+        }
+        if(prevProps.positions !== this.props.positions){
+            this.setState({
+                positions: this.props.positions
+            })
         }
     }
 
-
     render() {
+        console.log(this.props.positions)
         const {language} = this.props
         return (
             <div className="redux-container" >
@@ -64,8 +80,8 @@ class UserRedux extends Component {
                             <div className='col-3 mt-2'>
                                 <label><FormattedMessage id ='user.gender'/></label>
                                 <select class="form-control">
-                                    {this.state.gender && this.state.gender.length > 0 && 
-                                        this.state.gender.map((item,index) => {return (
+                                    {this.state.genders && this.state.genders.length > 0 && 
+                                        this.state.genders.map((item,index) => {return (
                                             <option key ={index}> {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
                                         )})
                                     }
@@ -74,15 +90,21 @@ class UserRedux extends Component {
                             <div className='col-3 mt-2'>
                                 <label><FormattedMessage id ='user.role'/></label>
                                 <select class="form-control">
-                                    <option value = '1'>Admin</option>
-                                    <option value = '2'>User</option>
+                                    {this.state.roles && this.state.roles.length > 0 && 
+                                        this.state.roles.map((item,index) => {return (
+                                            <option key ={index}> {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                        )})
+                                    }
                                 </select>
                             </div>
                             <div className='col-3 mt-2'>
                                 <label><FormattedMessage id ='user.position'/></label>
                                 <select class="form-control">
-                                    <option value = '1'>Patient</option>
-                                    <option value = '2'>Doctor</option>
+                                    {this.state.positions && this.state.positions.length > 0 && 
+                                        this.state.positions.map((item,index) => {return (
+                                            <option key ={index}> {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                        )})
+                                    }
                                 </select>
                             </div>
                             <div className='col-3 mt-2'></div>
@@ -100,12 +122,19 @@ class UserRedux extends Component {
 
 const mapStateToProps = state => {
     return {
-        language: state.app.language
+        language: state.app.language,
+        genders: state.admin.genders,
+        positions: state.admin.positions,
+        roles: state.admin.roles,
+        isLoading: state.admin.isLoading
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getGenderStart: () => dispatch(actions.fetchGenderStart()),
+        getRolerStart: () => dispatch(actions.fetchRoleStart()),
+        getPositionStart: () => dispatch(actions.fetchPositionStart())
     };
 };
 
