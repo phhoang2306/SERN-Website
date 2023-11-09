@@ -6,4 +6,7 @@ const handleLogin = (email, password) => {
 const getAllUSers = (id) =>{
     return axios.get(`/api/get-all-users?id=${id}`)
 }
-export {handleLogin, getAllUSers}
+const handlegetAllCodes = (type) =>{
+    return axios.get(`/api/get-allcodes?type=${type}`)
+}
+export {handleLogin, getAllUSers, handlegetAllCodes}

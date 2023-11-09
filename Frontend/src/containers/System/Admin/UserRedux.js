@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import {LANGUAGES} from '../../../utils';
+import {handlegetAllCodes} from '../../../services/userServiceAPI';
 import "./UserRedux.scss"
 class UserRedux extends Component {
-
-    state = {
+    constructor(props){
+        super(props);
+        this.state = {
+            gender: []
+        }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        try{
+            let res = await handlegetAllCodes('gender');
+            if(res && res.errCode ===0 ){
+                this.setState({gender: res.data})
+            }
+        }catch(e){
+            console.log(e)
+        }
     }
 
 
     render() {
+        const {language} = this.props
         return (
             <div className="redux-container" >
                 <div className='redux-title'>
@@ -50,8 +64,11 @@ class UserRedux extends Component {
                             <div className='col-3 mt-2'>
                                 <label><FormattedMessage id ='user.gender'/></label>
                                 <select class="form-control">
-                                    <option value = '1'>Male</option>
-                                    <option value = '0'>Female</option>
+                                    {this.state.gender && this.state.gender.length > 0 && 
+                                        this.state.gender.map((item,index) => {return (
+                                            <option key ={index}> {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                        )})
+                                    }
                                 </select>
                             </div>
                             <div className='col-3 mt-2'>
@@ -83,6 +100,7 @@ class UserRedux extends Component {
 
 const mapStateToProps = state => {
     return {
+        language: state.app.language
     };
 };
 
