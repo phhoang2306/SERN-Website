@@ -110,6 +110,7 @@
         "position": "Vị trí",
         "role": "Vai trò",
         "image": "Ảnh đại diện",
-        "save": "Lưu thông tin"
+        "save": "Lưu thông tin",
+        "upload-image":"Tải ảnh"
     }
 }
