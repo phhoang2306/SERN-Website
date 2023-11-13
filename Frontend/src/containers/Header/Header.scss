@@ -8,15 +8,17 @@
     color: $common-text-color;
     height: 40px;
     position: relative;
+    font-size: 20px;
+    font-weight: 600;
     .language{
         .welcome-user{
-            font-size: 15px;
+            font-size: 19px;
             font-weight: 600;
         }
         .language-en{
             margin: 0 15px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             opacity: 0.8;
             &.active{
                 color: orange !important;
@@ -30,7 +32,7 @@
         }
         .language-vi{
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             opacity: 0.8;
             &.active{
                 color: orange;

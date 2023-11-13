@@ -9,4 +9,8 @@ const getAllUSers = (id) =>{
 const handlegetAllCodes = (type) =>{
     return axios.get(`/api/get-allcodes?type=${type}`)
 }
-export {handleLogin, getAllUSers, handlegetAllCodes}
+const handleCreateUSer = (data) =>{
+    return axios.post('/api/create-new-user',data);
+
+}
+export {handleLogin, getAllUSers, handlegetAllCodes, handleCreateUSer}

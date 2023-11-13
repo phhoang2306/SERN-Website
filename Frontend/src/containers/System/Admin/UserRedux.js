@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {LANGUAGES} from '../../../utils';
 import * as actions from "../../../store/actions"
 import "./UserRedux.scss"
-
+import TableManageUser from './TableManageUser';
 
 class UserRedux extends Component {
     constructor(props){
@@ -23,6 +23,7 @@ class UserRedux extends Component {
             role: '',
             position: '',
             avatar: '',
+            res: '',
         }
     }
 
@@ -50,6 +51,11 @@ class UserRedux extends Component {
                 position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : ''
             })
         }
+        if(prevProps.res !== this.props.res){
+            this.setState({
+                res: this.props.res
+            })
+        }
     }
 
     handleOnChangeImage = (event) =>{
@@ -65,7 +71,6 @@ class UserRedux extends Component {
             reader.readAsDataURL(file);
         }
     }
-
     handleOnChangeValue = (event, id) =>{
         let copyState = {...this.state}
         copyState[id] = event.target.value;
@@ -85,9 +90,23 @@ class UserRedux extends Component {
         }
         return isValid;
     }
-    handleOnSave = () =>{
+    handleOnSave = async () =>{
         if(this.checkValidateInput()){
-            console.log(this.state)
+            await this.props.createNewUser({
+                email: this.state.email,
+                fullname: this.state.fullname,
+                password: this.state.password,
+                address: this.state.address,
+                gender: this.state.gender,
+                roleID: this.state.role,
+                phoneNumber: this.state.phone,
+                positionID: this.state.position
+            })
+            if (this.state.res.errCode === 0){
+                alert(this.props.language === LANGUAGES.VI ?'Tạo tài khoản thành công' : 'Create account succesfully')
+            } else if (this.state.res.errCode === 1){
+                alert(this.props.language === LANGUAGES.VI ?'Email đã được sử dụng' : 'Email has been used')
+            }
         }
     }
 
@@ -179,10 +198,13 @@ class UserRedux extends Component {
                                     <label className = "upload-button" htmlFor='upload-image'><FormattedMessage id ='user.upload-image'/><i class="fa fa-upload"></i> </label> 
                                 </div>
                             </div>
-                            <div className = 'col-6 mt-3'>
+                            <div className = 'col-6 mt-3 '>
                                 {this.state.preView && (
-                                    <img src={this.state.preView} alt="Preview" style={{ maxWidth:'100%', maxHeight:'100%' }} />
+                                    <img src={this.state.preView} alt="Preview" style={{ maxWidth:'300px', maxHeight:'300px' }} />
                                 )}
+                            </div>
+                            <div className='col-12 my-4'>
+                                <TableManageUser/>
                             </div>
                         </div>
                     </div>
@@ -199,7 +221,8 @@ const mapStateToProps = state => {
         genders: state.admin.genders,
         positions: state.admin.positions,
         roles: state.admin.roles,
-        isLoading: state.admin.isLoading
+        isLoading: state.admin.isLoading,
+        res: state.user.res
     };
 };
 
@@ -207,7 +230,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
         getRolerStart: () => dispatch(actions.fetchRoleStart()),
-        getPositionStart: () => dispatch(actions.fetchPositionStart())
+        getPositionStart: () => dispatch(actions.fetchPositionStart()),
+        createNewUser: (data) => dispatch(actions.CreatUser(data))
     };
 };
 

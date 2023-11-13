@@ -1,6 +1,8 @@
 import actionTypes from './actionTypes';
 import {handlegetAllCodes} from "../../services/userServiceAPI"
+import {getAllUSers} from "../../services/userServiceAPI"
 
+// Get Gender
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
         try{
@@ -26,6 +28,7 @@ export const fetchGenderFail = () =>({
     type: actionTypes.FETCH_GENDER_FAIL
 })
 
+// Get Role
 export const fetchRoleStart = () => {
     return async (dispatch, getState) => {
         try{
@@ -51,6 +54,7 @@ export const fetchRoleFail = () =>({
     type: actionTypes.FETCH_ROLE_FAIL
 })
 
+// Get Position
 export const fetchPositionStart = () => {
     return async (dispatch, getState) => {
         try{
@@ -74,4 +78,29 @@ export const fetchPositionSuccess = (data) => ({
 })
 export const fetchPositionFail = () =>({
     type: actionTypes.FETCH_POSITION_FAIL
+})
+
+//  Get all user
+export const fetchGetAllUser = () =>{
+    return async (dispatch, getState) => {
+        try{
+            let res = await getAllUSers('all');
+            if(res && res.errCode === 0){
+                dispatch(fetchGetAllUserSuccess(res.data))
+            } else {
+                dispatch(fetchGetAllUserFail());
+            }
+        } catch(e){
+            dispatch(fetchGetAllUserFail());
+            console.log("fecthGetAllUser error", e);
+        }
+
+    }
+}
+export const fetchGetAllUserSuccess = (data) => ({
+    type: actionTypes.FETCH_GET_ALL_USER_SUCCESS,
+    data: data
+})
+export const fetchGetAllUserFail = () =>({
+    type: actionTypes.FETCH_GET_ALL_USER_FAIL
 })

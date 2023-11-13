@@ -112,6 +112,7 @@
         "role": "Role",
         "image": "Avatar",
         "save": "Save information",
+        "action": "Action",
         "upload-image":"Upload image"
     }
 }
