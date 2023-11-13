@@ -96,21 +96,23 @@ let handleCreateNewUser = (data) =>{
                     message: "Your email is already used."
                 })
             }
-            let hashPassword = await hashUserPassword(data.password)
-            await db.User.create({
-                email: data.email,
-                fullname: data.fullname,
-                password: hashPassword,
-                address: data.address,
-                gender: data.gender === '1' ? true : false,
-                roleID: data.roleID,
-                phoneNumber: data.phonenumber,
-                positionID: data.positionID,
-            })
-            resolve({
-                errCode: 0,
-                message: 'Create successfully'
-            })
+            else{
+                let hashPassword = await hashUserPassword(data.password)
+                await db.User.create({
+                    email: data.email,
+                    fullname: data.fullname,
+                    password: hashPassword,
+                    address: data.address,
+                    gender: data.gender,
+                    roleID: data.roleID,
+                    phoneNumber: data.phoneNumber,
+                    positionID: data.positionID,
+                })
+                resolve({
+                    errCode: 0,
+                    message: 'Create successfully'
+                })
+            }
         } catch(e){
             reject(e)
         }
