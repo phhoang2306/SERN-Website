@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import {LANGUAGES} from '../../../utils';
+import {LANGUAGES, CRUD_ACTIONS} from '../../../utils';
 import * as actions from "../../../store/actions"
+import {toast} from 'react-toastify';
 import "./UserRedux.scss"
 import TableManageUser from './TableManageUser';
 
@@ -14,6 +15,7 @@ class UserRedux extends Component {
             roles: [],
             positions: [], 
             preView: '',
+            id: '',
             email: '',
             password: '',
             fullname: '',
@@ -24,6 +26,7 @@ class UserRedux extends Component {
             position: '',
             avatar: '',
             res: '',
+            action: CRUD_ACTIONS.CREAT,
         }
     }
 
@@ -90,29 +93,95 @@ class UserRedux extends Component {
         }
         return isValid;
     }
-    handleOnSave = async () =>{
-        if(this.checkValidateInput()){
-            await this.props.createNewUser({
+    handleOnClickBtn = async () =>{
+        if (this.state.action === CRUD_ACTIONS.CREAT){
+            if(this.checkValidateInput()){
+                await this.props.createNewUser({
+                    email: this.state.email,
+                    fullname: this.state.fullname,
+                    password: this.state.password,
+                    address: this.state.address,
+                    gender: this.state.gender,
+                    roleID: this.state.role,
+                    phoneNumber: this.state.phone,
+                    positionID: this.state.position
+                })
+                if (this.state.res.errCode === 0){
+                    toast.success(this.props.language === LANGUAGES.VI ?'Tạo tài khoản thành công' : 'Create account succesfully')
+                    this.setState({
+                        email: '',
+                        password: '',
+                        fullname: '',
+                        phone: '',
+                        address: '',
+                        gender: this.props.genders && this.props.genders.length > 0 ? this.props.genders[0].key : '',
+                        role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].key : '',
+                        position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : '',
+                        avatar: '',
+                    })
+                } else if (this.state.res.errCode === 1){
+                    toast.error(this.props.language === LANGUAGES.VI ?'Email đã được sử dụng' : 'Email has been used')
+                    this.setState({
+                        email: ''
+                    })
+                }
+            }
+        }
+        else if(this.state.action === CRUD_ACTIONS.EDIT){
+            await this.props.editUser({
+                id: this.state.id,
                 email: this.state.email,
                 fullname: this.state.fullname,
-                password: this.state.password,
                 address: this.state.address,
                 gender: this.state.gender,
                 roleID: this.state.role,
                 phoneNumber: this.state.phone,
-                positionID: this.state.position
+                positionID: this.state.position,
+                image: this.state.avatar
             })
             if (this.state.res.errCode === 0){
-                alert(this.props.language === LANGUAGES.VI ?'Tạo tài khoản thành công' : 'Create account succesfully')
+                toast.success(this.props.language === LANGUAGES.VI ? 'Lưu dữ liệu thành công' : 'Save information succesfully')
+                this.setState({
+                    email: '',
+                    password: '',
+                    fullname: '',
+                    phone: '',
+                    address: '',
+                    gender: this.props.genders && this.props.genders.length > 0 ? this.props.genders[0].key : '',
+                    role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].key : '',
+                    position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : '',
+                    avatar: '',
+                    action: CRUD_ACTIONS.CREAT
+                })
             } else if (this.state.res.errCode === 1){
-                alert(this.props.language === LANGUAGES.VI ?'Email đã được sử dụng' : 'Email has been used')
+                toast.error(this.props.language === LANGUAGES.VI ?'Không tìm thấy tài khoản ' : "Can't find user")
+                this.setState({
+                    email: '',
+                    action: CRUD_ACTIONS.CREAT
+                })
             }
         }
     }
 
+    // Get data from child
+    handleGetDataFromChild = (user) =>{
+        this.setState({
+            id: user.id,
+            email: user.email,
+            password: '**********', 
+            fullname: user.fullname,
+            phone: user.phoneNumber,
+            address: user.address,
+            gender: user.gender,
+            role: user.roleID,
+            position: user.positionID,
+            avatar: user.image,
+            action: CRUD_ACTIONS.EDIT
+        })
+    }
     render() {
         const {language} = this.props
-        const {email, password,fullname, phone,address} = this.props
+        const {email, password,fullname, phone,address, role, position, gender} = this.state
         return (
             <div className="redux-container" >
                 <div className='redux-title'>
@@ -124,21 +193,27 @@ class UserRedux extends Component {
                     <div className='text-center'>
                         <span><FormattedMessage id ='user.add'/></span>
                         <div className='col-3 mt-3'>
-                                <button className='btn btn-primary' 
-                                onClick={() => this.handleOnSave()}><FormattedMessage id ='user.save' /></button>
+                                <button className= {this.state.action === CRUD_ACTIONS.CREAT ? 'btn btn-primary' : 'btn btn-warning'}
+                                onClick={() => this.handleOnClickBtn()}>
+                                    {this.state.action === CRUD_ACTIONS.CREAT ? 
+                                    <FormattedMessage id ='user.create'/> : <FormattedMessage id ='user.edit'/>}
+                                </button>
                         </div>
                     </div>
                     <div className='container'>
                         <div className='row'>
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.email'/></label>
-                                <input className = "form-control" type ="email" placeholder ="@gmail.com" value={email} 
-                                onChange={(event) => {this.handleOnChangeValue(event, 'email')}}/>
+                                <input className = "form-control" type ="email" placeholder ="@gmail.com" value={email}
+                                onChange={(event) => {this.handleOnChangeValue(event, 'email')}}
+                                //disabled={this.state.action === CRUD_ACTIONS.CREAT ? false : true}
+                                />
                             </div>
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.password'/></label>
                                 <input className = "form-control" type ="password" 
-                                value={password} onChange={(event) => {this.handleOnChangeValue(event, 'password')}}/>
+                                value={password} onChange={(event) => {this.handleOnChangeValue(event, 'password')}}
+                                disabled={this.state.action === CRUD_ACTIONS.CREAT ? false : true}/>
                             </div>
                            <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.fullname'/></label>
@@ -158,7 +233,8 @@ class UserRedux extends Component {
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.gender'/></label>
                                 <select className="form-control"
-                                     onChange={(event) => {this.handleOnChangeValue(event, 'gender')}}>
+                                     onChange={(event) => {this.handleOnChangeValue(event, 'gender')}}
+                                     value = {gender}>
                                     {this.state.genders && this.state.genders.length > 0 && 
                                         this.state.genders.map((item,index) => {return (
                                             <option key ={index} value ={item.key}> 
@@ -171,7 +247,9 @@ class UserRedux extends Component {
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.role'/></label>
                                 <select class="form-control"
-                                onChange={(event) => {this.handleOnChangeValue(event, 'role')}}>
+                                onChange={(event) => {this.handleOnChangeValue(event, 'role')}}
+                                value = {role}
+                                >
                                     {this.state.roles && this.state.roles.length > 0 && 
                                         this.state.roles.map((item,index) => {return (
                                             <option key ={index} value ={item.key} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
@@ -182,7 +260,8 @@ class UserRedux extends Component {
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.position'/></label>
                                 <select class="form-control"
-                                onChange={(event) => {this.handleOnChangeValue(event, 'position')}}>
+                                onChange={(event) => {this.handleOnChangeValue(event, 'position')}}
+                                value = {position}>
                                     {this.state.positions && this.state.positions.length > 0 && 
                                         this.state.positions.map((item,index) => {return (
                                             <option key ={index} value ={item.key}>  {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
@@ -198,13 +277,15 @@ class UserRedux extends Component {
                                     <label className = "upload-button" htmlFor='upload-image'><FormattedMessage id ='user.upload-image'/><i class="fa fa-upload"></i> </label> 
                                 </div>
                             </div>
-                            <div className = 'col-6 mt-3 '>
+                            <div className = 'col-6 mt-3 '> 
                                 {this.state.preView && (
                                     <img src={this.state.preView} alt="Preview" style={{ maxWidth:'300px', maxHeight:'300px' }} />
                                 )}
                             </div>
                             <div className='col-12 my-4'>
-                                <TableManageUser/>
+                                <TableManageUser
+                                    handleGetDataFromChild = {this.handleGetDataFromChild}
+                                />
                             </div>
                         </div>
                     </div>
@@ -222,7 +303,7 @@ const mapStateToProps = state => {
         positions: state.admin.positions,
         roles: state.admin.roles,
         isLoading: state.admin.isLoading,
-        res: state.user.res
+        res: state.user.res, 
     };
 };
 
@@ -231,7 +312,8 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
         getRolerStart: () => dispatch(actions.fetchRoleStart()),
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
-        createNewUser: (data) => dispatch(actions.CreatUser(data))
+        createNewUser: (data) => dispatch(actions.CreatUser(data)),
+        editUser: (user) => dispatch(actions.editUser(user))
     };
 };
 

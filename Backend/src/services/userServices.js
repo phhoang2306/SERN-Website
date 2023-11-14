@@ -125,12 +125,14 @@ let handleEditUser = (data) =>{
                 where: {id: data.id}
             })
             if(user){
+                user.email = data.email;
                 user.fullname = data.fullname;
                 user.address = data.address;
                 user.gender = data.gender;
                 user.phoneNumber = data.phoneNumber;
                 user.roleID = data.roleID;
                 user.positionID = data.positionID;
+                user.image = data.image;
                 await user.save()
                 resolve({
                     errCode: 0,
@@ -156,11 +158,13 @@ let handleDeleteUser = (id) =>{
                     errCode: 2, 
                     message: "Account doesn't exist!"
             })}
-            await user.destroy()
-            resolve({
-                errCode: 0, 
-                message: "Delete user successfully!"
-            })
+            else {
+                await user.destroy()
+                resolve({
+                    errCode: 0, 
+                    message: "Delete user successfully!"
+                })
+            }
     })
 }
 let handleGetAllCodes = (typeInput) =>{

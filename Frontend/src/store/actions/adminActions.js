@@ -86,7 +86,8 @@ export const fetchGetAllUser = () =>{
         try{
             let res = await getAllUSers('all');
             if(res && res.errCode === 0){
-                dispatch(fetchGetAllUserSuccess(res.data))
+                
+                dispatch(fetchGetAllUserSuccess(res.data.reverse()))
             } else {
                 dispatch(fetchGetAllUserFail());
             }

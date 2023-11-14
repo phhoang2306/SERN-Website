@@ -80,7 +80,7 @@
             "system-administrator": {
                 "header": "System Administrator",
                 "user-manage": "User manage",
-                "user-redux": "Quản lý người dùng redux" 
+                "user-redux": "User manage redux" 
             },
             "system-parameter": {
                 "header": "System-parameter"
@@ -108,10 +108,13 @@
         "address": "Address",
         "phone":"Phone number",
         "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
         "position": "Position",
         "role": "Role",
         "image": "Avatar",
-        "save": "Save information",
+        "create": "Create user",
+        "edit": "Save Information",
         "action": "Action",
         "upload-image":"Upload image"
     }

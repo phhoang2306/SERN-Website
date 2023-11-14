@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import {toast} from 'react-toastify';
+import {LANGUAGES} from '../../../utils'
 import * as actions from "../../../store/actions"
 import "./TableManageUser.scss"
+import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons';
 class TableManageUser extends Component {
     constructor(props){
         super(props);
         this.state = {
-            users: []
+            users: [],
+            res: ''
         }
     }
+
     async componentDidMount() {
         this.props.getAllUser()
     }
+    
+    //Check Update of components
     componentDidUpdate(prevProps, prevState, snapshot){
         if(prevProps.users !== this.props.users){
             this.setState({
                 users: this.props.users
             })
-            console.log(this.props.users)
         }
+        if(prevProps.res !== this.props.res){
+            this.setState({
+                res: this.props.res
+            })
+        }
+    }
+
+    // handle delete function
+    handleOnClickDelete = async(id) =>{
+        await this.props.deleteUser(id)
+        if (this.state.res.errCode === 0){
+            toast.success(this.props.language === LANGUAGES.VI ?'Xóa tài khoản thành công' : 'Delete account succesfully')
+        } else if (this.state.res.errCode === 2){
+            toast.error(this.props.language === LANGUAGES.VI ?'Tài khoản không tồn tại' : "Account doesn't exist")
+        }
+    }
+
+    // handle ediit function
+    handleOnClickEdit = async(user) =>{
+       this.props.handleGetDataFromChild(user)
     }
     render() {
         return (
@@ -45,11 +71,13 @@ class TableManageUser extends Component {
                                 <td>{item.fullname}</td>
                                 <td> {item.phoneNumber}</td>
                                 <td> {item.address}</td>
-                                <td> {item.gender}</td>
+                                <td> {item.gender  === "M" ? <FormattedMessage id ='user.male'/> : <FormattedMessage id ='user.female'/>}</td>
                                 <td> {item.roleID}</td>
                                 <td> {item.positionID}</td>
-                                <button className = 'editBtn'> <i className='fas fa-pencil-alt'></i></button>
-                                <button className = 'delBtn' > <i class="fa fa-trash"></i></button>
+                                <button className = 'editBtn'
+                                onClick={() => this.handleOnClickEdit(item)}> <i className='fas fa-pencil-alt'></i></button>
+                                <button className = 'delBtn' 
+                                onClick={() => this.handleOnClickDelete(item.id)}> <i class="fa fa-trash"></i></button>
                             </tr>
                         )
                     })}
@@ -63,13 +91,15 @@ class TableManageUser extends Component {
 
 const mapStateToProps = state => {
     return {
-        users: state.admin.users
+        users: state.admin.users,
+        res: state.user.res, 
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getAllUser: () => dispatch(actions.fetchGetAllUser())
+        getAllUser: () => dispatch(actions.fetchGetAllUser()),
+        deleteUser: (id) => dispatch(actions.deleteUser(id))
     };
 };
 

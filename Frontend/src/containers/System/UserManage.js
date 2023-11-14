@@ -16,7 +16,6 @@ class UserManage extends Component {
 
     async componentDidMount() {
         let response =  await getAllUSers('all')
-        console.log(response)
         if(response.errCode === 0 && response){
             this.setState({arrUsers: response.data},() =>{}) // Call back
         }

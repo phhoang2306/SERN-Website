@@ -107,10 +107,13 @@
         "address": "Địa chỉ",
         "phone":"Số điện thoại",
         "gender": "Giới tính",
+        "male": "Nam",
+        "female": "Nữ",
         "position": "Vị trí",
         "role": "Vai trò",
         "image": "Ảnh đại diện",
-        "save": "Lưu thông tin",
+        "create": "Tạo người dùng",
+        "edit": "Lưu thông tin",
         "action": "Chức năng",
         "upload-image":"Tải ảnh"
     }

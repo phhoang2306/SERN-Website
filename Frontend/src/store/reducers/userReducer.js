@@ -37,6 +37,27 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 res: action.res
             }
+        case actionTypes.EDIT_USER_SUCCESSFUL:
+                return {
+                    ...state,
+                    res: action.res
+                }
+        case actionTypes.EDIT_USER_FAILED:
+                return {
+                    ...state,
+                    res: action.res
+                }
+        case actionTypes.DELETE_USER_SUCCESSFUL:
+            return {
+                ...state,
+                res: action.res
+            }
+        case actionTypes.DELETE_USER_FAILED:
+            return {
+                ...state,
+                res: action.res
+            }
+        
         default:
             return state;
     }
