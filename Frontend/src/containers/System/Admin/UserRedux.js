@@ -121,6 +121,7 @@ class UserRedux extends Component {
                         role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].key : '',
                         position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : '',
                         avatar: '',
+                        preView: '',
                     })
                 } else if (this.state.res.errCode === 1){
                     toast.error(this.props.language === LANGUAGES.VI ?'Email đã được sử dụng' : 'Email has been used')
@@ -154,7 +155,8 @@ class UserRedux extends Component {
                     role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].key : '',
                     position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : '',
                     avatar: '',
-                    action: CRUD_ACTIONS.CREAT
+                    action: CRUD_ACTIONS.CREAT,
+                    preView: ''
                 })
             } else if (this.state.res.errCode === 1){
                 toast.error(this.props.language === LANGUAGES.VI ?'Người dùng không tồn tại' : this.state.res.message)
@@ -168,6 +170,10 @@ class UserRedux extends Component {
 
     // Get data from child
     handleGetDataFromChild = (user) =>{
+        let imageBase64 = ''
+        if(user.image){
+            imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+        }
         this.setState({
             id: user.id,
             email: user.email,
@@ -179,6 +185,7 @@ class UserRedux extends Component {
             role: user.roleID,
             position: user.positionID,
             avatar: user.image,
+            preView: imageBase64,
             action: CRUD_ACTIONS.EDIT
         })
     }

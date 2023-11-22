@@ -132,8 +132,10 @@ let handleEditUser = (data) =>{
                 user.gender = data.gender;
                 user.phoneNumber = data.phoneNumber;
                 user.roleID = data.roleID;
-                user.positionID = data.positionID;
-                user.image = data.image;
+                user.positionID = data.positionID
+                if(data.image){
+                    user.image = data.image;
+                }
                 await user.save()
                 resolve({
                     errCode: 0,
