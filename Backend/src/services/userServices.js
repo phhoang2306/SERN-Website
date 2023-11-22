@@ -107,6 +107,7 @@ let handleCreateNewUser = (data) =>{
                     roleID: data.roleID,
                     phoneNumber: data.phoneNumber,
                     positionID: data.positionID,
+                    image: data.image
                 })
                 resolve({
                     errCode: 0,

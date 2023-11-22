@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import {LANGUAGES, CRUD_ACTIONS} from '../../../utils';
+import {LANGUAGES, CRUD_ACTIONS, CommonUtils} from '../../../utils';
 import * as actions from "../../../store/actions"
 import {toast} from 'react-toastify';
 import "./UserRedux.scss"
@@ -61,14 +61,15 @@ class UserRedux extends Component {
         }
     }
 
-    handleOnChangeImage = (event) =>{
+    handleOnChangeImage =  async (event) => {
         let file = event.target.files[0];
         if (file) {
+            let base64 = await CommonUtils.convertImageIntoBase64(file);
             let reader = new FileReader();
             reader.onload = () => {
             this.setState({
                 preView: reader.result,
-                avatar: file
+                avatar: base64
             });
             };
             reader.readAsDataURL(file);
@@ -96,6 +97,7 @@ class UserRedux extends Component {
     handleOnClickBtn = async () =>{
         if (this.state.action === CRUD_ACTIONS.CREAT){
             if(this.checkValidateInput()){
+                console.log(this.state.avatar)
                 await this.props.createNewUser({
                     email: this.state.email,
                     fullname: this.state.fullname,
@@ -104,7 +106,8 @@ class UserRedux extends Component {
                     gender: this.state.gender,
                     roleID: this.state.role,
                     phoneNumber: this.state.phone,
-                    positionID: this.state.position
+                    positionID: this.state.position,
+                    image: this.state.avatar
                 })
                 if (this.state.res.errCode === 0){
                     toast.success(this.props.language === LANGUAGES.VI ?'Tạo tài khoản thành công' : 'Create account succesfully')

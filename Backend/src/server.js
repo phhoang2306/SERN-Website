@@ -8,8 +8,8 @@ require('dotenv').config();
 
 let app = express();    
 //Config app
-app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json({limit: '50mb'})); 
+app.use(bodyParser.urlencoded({limit: '50mb', extended:true}));
 //app.use(cors({ credentials: true, origin: true }))
 app.use(function(req, res, next){
     res.setHeader('Access-Control-Allow-Origin', process.env.URL_REACT) // Allow access from link
