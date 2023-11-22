@@ -154,7 +154,7 @@ class UserRedux extends Component {
                     action: CRUD_ACTIONS.CREAT
                 })
             } else if (this.state.res.errCode === 1){
-                toast.error(this.props.language === LANGUAGES.VI ?'Không tìm thấy tài khoản ' : "Can't find user")
+                toast.error(this.props.language === LANGUAGES.VI ?'Người dùng không tồn tại' : this.state.res.message)
                 this.setState({
                     email: '',
                     action: CRUD_ACTIONS.CREAT

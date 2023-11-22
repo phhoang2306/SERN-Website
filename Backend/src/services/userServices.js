@@ -140,11 +140,10 @@ let handleEditUser = (data) =>{
                 }) 
             } else {
                 resolve({
-                    errCode: 2,
+                    errCode: 1,
                     message: "Can't find user"
                 })
             }
-            
         }catch(e){
             reject(e)
         }
