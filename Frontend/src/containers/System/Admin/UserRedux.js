@@ -25,6 +25,7 @@ class UserRedux extends Component {
             role: '',
             position: '',
             avatar: '',
+            imagebase64: '',
             res: '',
             action: CRUD_ACTIONS.CREAT,
         }
@@ -132,6 +133,7 @@ class UserRedux extends Component {
             }
         }
         else if(this.state.action === CRUD_ACTIONS.EDIT){
+            console.log(this.state.avatar)
             await this.props.editUser({
                 id: this.state.id,
                 email: this.state.email,
@@ -167,7 +169,6 @@ class UserRedux extends Component {
             }
         }
     }
-
     // Get data from child
     handleGetDataFromChild = (user) =>{
         let imageBase64 = ''

@@ -1,6 +1,7 @@
 import actionTypes from './actionTypes';
 import {handlegetAllCodes} from "../../services/userServiceAPI"
 import {getAllUSers} from "../../services/userServiceAPI"
+import { handleGetTopDoctor } from '../../services/doctorServiceAPI';
 
 // Get Gender
 export const fetchGenderStart = () => {
@@ -104,4 +105,29 @@ export const fetchGetAllUserSuccess = (data) => ({
 })
 export const fetchGetAllUserFail = () =>({
     type: actionTypes.FETCH_GET_ALL_USER_FAIL
+})
+
+// Get top doctor
+export const fetchGetTopDoctors = (limit) =>{
+    return async (dispatch, getState) => {
+        try{
+            let res = await  handleGetTopDoctor(limit);
+            if(res && res.errCode === 0){
+                
+                dispatch(fetchGetTopDoctorSuccess(res))
+            } else {
+                dispatch(fetchGetTopDoctorFail());
+            }
+        } catch(e){
+            dispatch(fetchGetTopDoctorFail());
+            console.log("fecthGetAllUser error", e);
+        }
+    }
+}
+export const fetchGetTopDoctorSuccess = (res) => ({
+    type: actionTypes.FETCH_GET_TOP_DOCTOR_SUCCESS,
+    data: res.data
+})
+export const fetchGetTopDoctorFail = () => ({
+    type: actionTypes.FETCH_GET_TOP_DOCTOR_FAIL,
 })

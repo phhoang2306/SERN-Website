@@ -63,6 +63,7 @@ let handleGetAllUsers = (userId) => {
                     attributes: {exclude: ['password']}
                 })
             }
+            console.log(result)
             resolve(result)
         }catch(e){
             reject(e)
@@ -125,6 +126,7 @@ let handleEditUser = (data) =>{
             let user = await db.User.findOne({
                 where: {id: data.id}
             })
+            console.log(data.image)
             if(user){
                 user.email = data.email;
                 user.fullname = data.fullname;
