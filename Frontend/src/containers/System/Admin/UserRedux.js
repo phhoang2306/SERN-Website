@@ -168,7 +168,7 @@ class UserRedux extends Component {
         }
     }
     openPreviewImage = () =>{
-        if(!this.state.preView) return
+        if(!this.state.preView) return;
         this.setState({
             isOpen: true
         })
@@ -189,7 +189,7 @@ class UserRedux extends Component {
             gender: user.gender,
             role: user.roleID,
             position: user.positionID,
-            avatar: user.image,
+            avatar: '',
             preView: imageBase64,
             action: CRUD_ACTIONS.EDIT
         })
@@ -291,9 +291,12 @@ class UserRedux extends Component {
                                         onChange={(event) =>this.handleOnChangeImage(event)}/>
                                     <label className = "upload-button" htmlFor='upload-image'><FormattedMessage id ='user.upload-image'/><i class="fa fa-upload"></i> </label> 
                                 </div>
+                            </div>
+                            <div className='col-3 mt-3'>
                                 <div className='preview-image'
                                 style={{backgroundImage: `url(${this.state.preView})`}}
-                                onClick={() => this.openPreviewImage()}></div>
+                                onClick={() => this.openPreviewImage()}>
+                                </div>
                             </div>
                             <div className='col-12 my-4'>
                                 <TableManageUser

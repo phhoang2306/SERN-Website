@@ -110,7 +110,7 @@ let handleCreateNewUser = (data) =>{
                     positionID: data.positionID,
                     image: data.image
                 })
-                console.log(data)
+                //console.log(data)
                 resolve({
                     errCode: 0,
                     message: 'Create successfully'
@@ -136,7 +136,7 @@ let handleEditUser = (data) =>{
                 user.phoneNumber = data.phoneNumber;
                 user.roleID = data.roleID;
                 user.positionID = data.positionID
-                if(data.image !== ''){
+                if(data.image){
                     user.image = data.image;
                 }
                 await user.save()

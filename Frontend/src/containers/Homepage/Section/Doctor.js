@@ -45,17 +45,17 @@ class Doctor extends Component {
                         && arrdoctors.map((item, index) => {
                             let ViName = `${item.positionData.valueVi}, ${item.fullname}`
                             let EnName = `${item.positionData.valueEn}, ${item.fullname}`
-                            let imagebase64 = ''
-                            console.log(item.image)
+                            let imageBase64 = ''
                             if(item.image){
-                                imagebase64 = new Buffer(item.image, 'base64').toString('binary')
+                                imageBase64 = new Buffer(item.image, 'base64').toString('binary');
                             }
-                            console.log(imagebase64)
+                            console.log(imageBase64)
                             return (
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
                                     <div className = 'image-content doctor'
-                                    style={{background: `url(${imagebase64}))`}}></div>
+                                       style={{backgroundImage: `url(${imageBase64})`}}> 
+                                    </div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'>{language == 'en' ? EnName : ViName}</div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_1'/></div>
