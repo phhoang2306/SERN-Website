@@ -5,7 +5,6 @@ import {toast} from 'react-toastify';
 import {LANGUAGES} from '../../../utils'
 import * as actions from "../../../store/actions"
 import "./TableManageUser.scss"
-import { faTurkishLiraSign } from '@fortawesome/free-solid-svg-icons';
 class TableManageUser extends Component {
     constructor(props){
         super(props);

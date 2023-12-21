@@ -16,6 +16,10 @@
             .btn-warning{
                 font-size: 20px;
             }
+            .preview-image{
+                height: 50px;
+                width: 100%;
+            }
         }
     }
 }
@@ -25,7 +29,7 @@
     .upload-button{
         flex-direction:row;
         text-align: center;
-        padding: 5px 0;
+        padding: 5px;
         border-radius: 5px;
         background-color: #ddd;
         cursor: pointer;
@@ -35,4 +39,13 @@
             opacity: 0.9;
         }
     }
+}
+.preview-image{
+    margin: 5px;
+    width: 100%;
+    height: 70px;
+    border: 1px solid red;
+    background: center center no-repeat;
+    background-size: contain;
+    cursor: pointer
 }

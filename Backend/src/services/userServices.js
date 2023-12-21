@@ -63,7 +63,7 @@ let handleGetAllUsers = (userId) => {
                     attributes: {exclude: ['password']}
                 })
             }
-            console.log(result)
+            //console.log(result)
             resolve(result)
         }catch(e){
             reject(e)
@@ -110,6 +110,7 @@ let handleCreateNewUser = (data) =>{
                     positionID: data.positionID,
                     image: data.image
                 })
+                console.log(data)
                 resolve({
                     errCode: 0,
                     message: 'Create successfully'
@@ -126,7 +127,7 @@ let handleEditUser = (data) =>{
             let user = await db.User.findOne({
                 where: {id: data.id}
             })
-            console.log(data.image)
+            //console.log(data.image)
             if(user){
                 user.email = data.email;
                 user.fullname = data.fullname;
@@ -135,7 +136,7 @@ let handleEditUser = (data) =>{
                 user.phoneNumber = data.phoneNumber;
                 user.roleID = data.roleID;
                 user.positionID = data.positionID
-                if(data.image){
+                if(data.image !== ''){
                     user.image = data.image;
                 }
                 await user.save()

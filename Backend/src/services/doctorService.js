@@ -6,7 +6,7 @@ let handleGetTopDoctor = (limit) => {
             let doctor = await db.User.findAll({
                 limit: limit,
                 where: {roleID:"R2"},
-                attributes: {exclude: ['password', 'image']},
+                attributes: {exclude: ['password']},
                 include: [
                     {model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi']},
                     {model: db.Allcode, as: 'genderData', attributes: ['valueEn', 'valueVi']}

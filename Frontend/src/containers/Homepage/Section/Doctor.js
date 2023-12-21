@@ -31,7 +31,6 @@ class Doctor extends Component {
     render() {
         let arrdoctors = this.state.doctors
         let language = this.props.language
-        console.log(language)
         arrdoctors = arrdoctors.concat(arrdoctors).concat(arrdoctors) // fake data
         return (
             <div className='section-container doctor'>
@@ -46,10 +45,17 @@ class Doctor extends Component {
                         && arrdoctors.map((item, index) => {
                             let ViName = `${item.positionData.valueVi}, ${item.fullname}`
                             let EnName = `${item.positionData.valueEn}, ${item.fullname}`
+                            let imagebase64 = ''
+                            console.log(item.image)
+                            if(item.image){
+                                imagebase64 = new Buffer(item.image, 'base64').toString('binary')
+                            }
+                            console.log(imagebase64)
                             return (
                             <div className='slider-content'>
                                 <div className = 'doctor-border'>
-                                    <div className = 'image-content doctor_1'></div>
+                                    <div className = 'image-content doctor'
+                                    style={{background: `url(${imagebase64}))`}}></div>
                                     <div className = 'position text-center'>
                                         <div className='name-doctor'>{language == 'en' ? EnName : ViName}</div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_1'/></div>

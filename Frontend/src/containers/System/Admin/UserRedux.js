@@ -6,7 +6,8 @@ import * as actions from "../../../store/actions"
 import {toast} from 'react-toastify';
 import "./UserRedux.scss"
 import TableManageUser from './TableManageUser';
-
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css'
 class UserRedux extends Component {
     constructor(props){
         super(props);
@@ -27,6 +28,7 @@ class UserRedux extends Component {
             avatar: '',
             imagebase64: '',
             res: '',
+            isOpen: false,
             action: CRUD_ACTIONS.CREAT,
         }
     }
@@ -40,19 +42,19 @@ class UserRedux extends Component {
         if(prevProps.genders !== this.props.genders){
             this.setState({
                 genders: this.props.genders,
-                gender: this.props.genders && this.props.genders.length > 0 ? this.props.genders[0].key : ''
+                gender: this.props.genders && this.props.genders.length > 0 ? this.props.genders[0].keyMap : ''
             })
         }
         if(prevProps.roles !== this.props.roles){
             this.setState({
                 roles: this.props.roles,
-                role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].key : ''
+                role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].keyMap : ''
             })
         }
         if(prevProps.positions !== this.props.positions){
             this.setState({
                 positions: this.props.positions,
-                position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : ''
+                position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].keyMap : ''
             })
         }
         if(prevProps.res !== this.props.res){
@@ -66,15 +68,13 @@ class UserRedux extends Component {
         let file = event.target.files[0];
         if (file) {
             let base64 = await CommonUtils.convertImageIntoBase64(file);
-            let reader = new FileReader();
-            reader.onload = () => {
+            let objectURL = URL.createObjectURL(file)
             this.setState({
-                preView: reader.result,
+                preView: objectURL,
                 avatar: base64
             });
-            };
-            reader.readAsDataURL(file);
         }
+        console.log(this.state.preView)
     }
     handleOnChangeValue = (event, id) =>{
         let copyState = {...this.state}
@@ -98,7 +98,6 @@ class UserRedux extends Component {
     handleOnClickBtn = async () =>{
         if (this.state.action === CRUD_ACTIONS.CREAT){
             if(this.checkValidateInput()){
-                console.log(this.state.avatar)
                 await this.props.createNewUser({
                     email: this.state.email,
                     fullname: this.state.fullname,
@@ -118,9 +117,9 @@ class UserRedux extends Component {
                         fullname: '',
                         phone: '',
                         address: '',
-                        gender: this.props.genders && this.props.genders.length > 0 ? this.props.genders[0].key : '',
-                        role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].key : '',
-                        position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : '',
+                        gender: this.props.genders && this.props.genders.length > 0 ? this.props.gendersc : '',
+                        role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].keyMap : '',
+                        position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].keyMap : '',
                         avatar: '',
                         preView: '',
                     })
@@ -133,7 +132,6 @@ class UserRedux extends Component {
             }
         }
         else if(this.state.action === CRUD_ACTIONS.EDIT){
-            console.log(this.state.avatar)
             await this.props.editUser({
                 id: this.state.id,
                 email: this.state.email,
@@ -153,9 +151,9 @@ class UserRedux extends Component {
                     fullname: '',
                     phone: '',
                     address: '',
-                    gender: this.props.genders && this.props.genders.length > 0 ? this.props.genders[0].key : '',
-                    role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].key : '',
-                    position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].key : '',
+                    gender: this.props.genders && this.props.genders.length > 0 ? this.props.genders[0].keyMap : '',
+                    role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].keyMap : '',
+                    position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].keyMap : '',
                     avatar: '',
                     action: CRUD_ACTIONS.CREAT,
                     preView: ''
@@ -169,7 +167,13 @@ class UserRedux extends Component {
             }
         }
     }
-    // Get data from child
+    openPreviewImage = () =>{
+        if(!this.state.preView) return
+        this.setState({
+            isOpen: true
+        })
+    }
+     // Get data from child
     handleGetDataFromChild = (user) =>{
         let imageBase64 = ''
         if(user.image){
@@ -236,7 +240,7 @@ class UserRedux extends Component {
                                 <input className = "form-control" type ="text" placeholder ="+84"
                                 value={phone} onChange={(event) => {this.handleOnChangeValue(event, 'phone')}}/>
                             </div>
-                            <div className='col-6 mt-3'>
+                            <div className='col-9 mt-3'>
                                 <label><FormattedMessage id ='user.address'/></label>
                                 <input className = "form-control" type ="text" placeholder ="Ho Chi Minh City"
                                 value={address} onChange={(event) => {this.handleOnChangeValue(event, 'address')}}/>
@@ -248,7 +252,7 @@ class UserRedux extends Component {
                                      value = {gender}>
                                     {this.state.genders && this.state.genders.length > 0 && 
                                         this.state.genders.map((item,index) => {return (
-                                            <option key ={index} value ={item.key}> 
+                                            <option key ={index} value ={item.keyMap}> 
                                                 {language === LANGUAGES.VI ? item.valueVi : item.valueEn} 
                                             </option>
                                         )})
@@ -263,7 +267,7 @@ class UserRedux extends Component {
                                 >
                                     {this.state.roles && this.state.roles.length > 0 && 
                                         this.state.roles.map((item,index) => {return (
-                                            <option key ={index} value ={item.key} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                            <option key ={index} value ={item.keyMap} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
                                         )})
                                     }
                                 </select>
@@ -275,7 +279,7 @@ class UserRedux extends Component {
                                 value = {position}>
                                     {this.state.positions && this.state.positions.length > 0 && 
                                         this.state.positions.map((item,index) => {return (
-                                            <option key ={index} value ={item.key}>  {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                            <option key ={index} value ={item.keyMap}>  {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
                                         )})
                                     }
                                 </select>
@@ -287,11 +291,9 @@ class UserRedux extends Component {
                                         onChange={(event) =>this.handleOnChangeImage(event)}/>
                                     <label className = "upload-button" htmlFor='upload-image'><FormattedMessage id ='user.upload-image'/><i class="fa fa-upload"></i> </label> 
                                 </div>
-                            </div>
-                            <div className = 'col-6 mt-3 '> 
-                                {this.state.preView && (
-                                    <img src={this.state.preView} alt="Preview" style={{ maxWidth:'300px', maxHeight:'300px' }} />
-                                )}
+                                <div className='preview-image'
+                                style={{backgroundImage: `url(${this.state.preView})`}}
+                                onClick={() => this.openPreviewImage()}></div>
                             </div>
                             <div className='col-12 my-4'>
                                 <TableManageUser
@@ -301,6 +303,12 @@ class UserRedux extends Component {
                         </div>
                     </div>
                 </div>
+                {this.state.isOpen === true &&
+                <Lightbox
+                    mainSrc={this.state.preView}
+                    onCloseRequest={() => this.setState({isOpen: false})}
+                />
+                }
             </div>
         )
     }
