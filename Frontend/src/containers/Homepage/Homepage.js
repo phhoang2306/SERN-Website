@@ -9,7 +9,6 @@ import About from './About';
 import Footer from './Footer';
 import './Homepage.scss';
 class Homepage extends Component {
-
     render() {
         let settings = {
             dots: false,

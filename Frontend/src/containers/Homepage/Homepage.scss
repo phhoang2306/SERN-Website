@@ -226,7 +226,6 @@
                         border-radius: 0%;
                     }
                 }
-            
                 .text-content{
                     margin: 0 auto; 
                     text-align: center;
@@ -282,6 +281,9 @@
                     background:   rgb(236, 249, 250);
                     border-color: rgb(89, 150, 158);
                 }
+            }
+            .slick-disabled{
+                display: none !important;
             }
         }
     }
