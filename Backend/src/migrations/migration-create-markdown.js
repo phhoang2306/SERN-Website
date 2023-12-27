@@ -10,9 +10,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       contentHTML: {
+        allowNull: false,
         type: Sequelize.TEXT('long')
       }, 
       contentMarkdown: {
+        allowNull: true,
         type: Sequelize.TEXT('long')
       },
       description: {

@@ -1,0 +1,41 @@
+.manage-container{
+    margin: 10px;
+    .manage-title{
+        text-align: center;
+        text-transform: uppercase;
+        padding: 5px;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: ui-serif;
+    }
+    .manage-body{
+        padding: 10px 0;
+        .body-info{
+            display: flex;
+            gap: 15px;
+            padding-bottom: 15px;
+            .body-info-left{
+                width: 20%;
+            }
+            .body-info-right{
+                width: 80%;
+            }
+        }
+    }
+    .save-button{
+        color: black;
+        background-color: orange;
+        border: none;
+        border-radius: 5%;
+        height: 40px;
+        width: auto;
+        font-size: 15px;
+        &:hover{
+            background-color: rgb(241, 159, 5);
+            color: white;
+        }
+    }
+}
+.body-title{
+    font-size: 15px;
+}
