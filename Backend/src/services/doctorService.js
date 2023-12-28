@@ -58,15 +58,31 @@ let handleCreateDoctorInfo = (data) =>{
                 })
             }
             else {
-                await db.Markdown.create({
+                let message = ''
+                // Check data of doctor is exist or not
+                info = await db.Markdown.findOne({
+                    where: {doctorID : data.doctorID},
+                    raw:true
+                });
+                if(info){ // Update if an info exist 
+                    info.contentHTML = data.contentHTML,
+                    info.contentMarkdown = data.contentMarkdown,
+                    info.description = data.description,
+                    await info.save()
+                    message = "Save doctor's information succesfully!"
+                }
+                else{ // Create an info
+                   await db.Markdown.create({
                     contentHTML: data.contentHTML,
                     contentMarkdown: data.contentMarkdown,
                     description: data.description,
                     doctorID: data.doctorID
                     })
+                    message = "Create doctor's information successfully!"
+                }
                 resolve({
                     errCode: 0,
-                    message: 'Create successfully'
+                    message: message
                 })
             }
         } catch(e){
@@ -74,6 +90,28 @@ let handleCreateDoctorInfo = (data) =>{
         }
     })
 }
+let handleGetDetailDoctor = (id) =>{
+    return new Promise(async (resolve, reject) => {
+        try{
+            let result = '';
+            result = await db.User.findOne({
+                where: {id: id},
+                attributes: {exclude: ['password', 'image', 'createdAt', 'updatedAt']},
+                include: [
+                    {model: db.Markdown, as: 'infoData', attributes: ['contentHTML', 'contentMarkdown', 'description']},
+                    {model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi']},
+                    {model: db.Allcode, as: 'genderData', attributes: ['valueEn', 'valueVi']}
+                ],
+                raw: true,
+                nest: true
+            })
+            resolve(result)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
 module.exports = {
-   handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo
+   handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo,
+   handleGetDetailDoctor
 }

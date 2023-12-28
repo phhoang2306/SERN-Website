@@ -29,6 +29,23 @@ let handleCreateDoctorInfo = async(req, res) =>{
     let message = await doctorService.handleCreateDoctorInfo(req.body);
     return res.status(200).json(message);
 }
+let handleGetDetailDoctor = async(req, res) =>{
+    let id = req.query.id;
+    if(!id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Missing parameter id!',
+            data: {}
+        })
+    }
+    let data = await doctorService.handleGetDetailDoctor(id)
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Get information successfully!',
+        data: data
+    })
+}
 module.exports = {
-    handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo
+    handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo,
+    handleGetDetailDoctor
 }
