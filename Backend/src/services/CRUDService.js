@@ -13,8 +13,6 @@ let hashUserPassword = (password) =>{
         }
     })
 }
-
-
 let createNewUser = async (data) =>{
     return new Promise ( async(resolve,reject) => {
         try {
@@ -35,7 +33,6 @@ let createNewUser = async (data) =>{
         }
     })
 }
-
 let getUserInformation = () => {
     return new Promise(async (resolve, reject) => {
         try{
@@ -48,7 +45,6 @@ let getUserInformation = () => {
         }
     }) 
 }
-
 let editUserInformation = (userID) =>{
     return new Promise(async (resolve, reject) => {
         try{

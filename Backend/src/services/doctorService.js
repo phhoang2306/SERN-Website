@@ -20,7 +20,59 @@ let handleGetTopDoctor = (limit) => {
         }
     })
 }
-
+let handleGetAllDoctors = () => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let result = '';
+            result = await db.User.findAll({
+                where: {roleID : 'R2'},
+                attributes: {exclude: ['password','image']},
+                raw:true
+            })
+            resolve(result)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+let handleCreateDoctorInfo = (data) =>{
+    return new Promise ( async(resolve,reject) => {
+        try {
+            // Check parameters 
+            if (!data.contentHTML){
+                resolve({
+                    errCode: 2,
+                    message: "Missing content HTML!"
+                })
+            }
+            if (!data.contentMarkdown){
+                resolve({
+                    errCode: 2,
+                    message: "Missing content Markdown!"
+                })
+            }
+            if (!data.doctorID){
+                resolve({
+                    errCode: 2,
+                    message: "Missing doctorID!"
+                })
+            }
+            await db.Markdown.create({
+                contentHTML: data.contentHTML,
+                contentMarkdown: data.contentMarkdown,
+                description: data.description,
+                doctorID: data.doctorID
+            })
+            //console.log(data)
+            resolve({
+                errCode: 0,
+                message: 'Create successfully'
+            })
+        } catch(e){
+            reject(e)
+        }
+    })
+}
 module.exports = {
-   handleGetTopDoctor
+   handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo
 }

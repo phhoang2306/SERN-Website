@@ -17,7 +17,18 @@ let handleGetTopDoctor = async(req, res) =>{
         })
     }
 }
-
+let handleGetAllDoctors = async (req, res) =>{
+    let doctors = await doctorService.handleGetAllDoctors()
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: "Get all doctor's information successfully!",
+        data: doctors
+    })
+}
+let handleCreateDoctorInfo = async(req, res) =>{
+    let message = await doctorService.handleCreateDoctorInfo(req.body);
+    return res.status(200).json(message);
+}
 module.exports = {
-    handleGetTopDoctor
+    handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo
 }
