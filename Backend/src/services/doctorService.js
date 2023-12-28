@@ -41,33 +41,34 @@ let handleCreateDoctorInfo = (data) =>{
             // Check parameters 
             if (!data.contentHTML){
                 resolve({
-                    errCode: 2,
+                    errCode: 1,
                     message: "Missing content HTML!"
                 })
             }
-            if (!data.contentMarkdown){
+            else if (!data.contentMarkdown){
                 resolve({
                     errCode: 2,
                     message: "Missing content Markdown!"
                 })
             }
-            if (!data.doctorID){
+            else if (!data.doctorID){
                 resolve({
-                    errCode: 2,
+                    errCode: 3,
                     message: "Missing doctorID!"
                 })
             }
-            await db.Markdown.create({
-                contentHTML: data.contentHTML,
-                contentMarkdown: data.contentMarkdown,
-                description: data.description,
-                doctorID: data.doctorID
-            })
-            //console.log(data)
-            resolve({
-                errCode: 0,
-                message: 'Create successfully'
-            })
+            else {
+                await db.Markdown.create({
+                    contentHTML: data.contentHTML,
+                    contentMarkdown: data.contentMarkdown,
+                    description: data.description,
+                    doctorID: data.doctorID
+                    })
+                resolve({
+                    errCode: 0,
+                    message: 'Create successfully'
+                })
+            }
         } catch(e){
             reject(e)
         }

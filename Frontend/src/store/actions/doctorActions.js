@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import {handleGetAllDoctors} from '../../services/doctorServiceAPI'
+import {handleGetAllDoctors, handleCreeateDoctorInfo} from '../../services/doctorServiceAPI'
 
 //  Get all user
 export const fetchGetAllDoctors = () =>{
@@ -24,4 +24,29 @@ export const fetchGetAllDoctorsSuccess = (data) => ({
 })
 export const fetchGetAllDoctorsFail = () =>({
     type: actionTypes.FETCH_GET_ALL_DOCTORS_FAIL
+})
+
+// Create doctor's information
+export const creatDoctorInfo = (data) =>{
+    return async (dispatch, getState) =>{
+        try{
+            let res = await handleCreeateDoctorInfo(data);
+            if (res && res.errCode === 0) {
+                dispatch(createDoctorInfoSuccessful(res));
+            } else{
+                dispatch(createDoctorInfoFailed(res));
+            }
+        }catch(e){
+            dispatch(createDoctorInfoFailed(e));
+            console.log("Error create doctor's information ", e)
+        }
+    }
+}
+export const createDoctorInfoSuccessful = (res) => ({
+    type: actionTypes.CREATE_DOCTOR_INFO_SUCCESSFUL,
+    res: res
+})
+export const createDoctorInfoFailed = (res) => ({
+    type: actionTypes.CREATE_DOCTOR_INFO_FAILED,
+    res: res
 })

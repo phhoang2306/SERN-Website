@@ -6,6 +6,9 @@ const handleGetTopDoctor = (limit) => {
 const handleGetAllDoctors = () =>{
     return axios.get(`/api/get-all-doctors`)
 }
+const handleCreeateDoctorInfo = (data) =>{
+    return axios.post('/api/create-doctor-info',data);
+}
 export {
-    handleGetTopDoctor, handleGetAllDoctors
+    handleGetTopDoctor, handleGetAllDoctors, handleCreeateDoctorInfo
 }

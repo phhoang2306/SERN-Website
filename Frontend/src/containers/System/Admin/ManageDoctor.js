@@ -8,7 +8,7 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import './ManageDoctor.scss'
 import Select from 'react-select'
-
+import {toast} from 'react-toastify';
 // Const variables
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 class ManageDoctor extends Component {
@@ -33,7 +33,6 @@ class ManageDoctor extends Component {
             })
         }
     }
-
     handleEditorChange = ({ html, text }) => {
         this.setState({
             textHTML: html,
@@ -42,15 +41,37 @@ class ManageDoctor extends Component {
     }
     handleChangeSelect = selectedOption =>{
         this.setState({selectedOption});
-        console.log(this.props.alldoctors)
     }
     handleChangeDecription = (event) =>{
         this.setState({
             description: event.target.value
         })
     }
-    handleSaveInfo = () =>{
-        console.log(this.state)
+    handleSaveInfo = async () =>{
+        let data = {
+            contentHTML: this.state.textHTML,
+            contentMarkdown: this.state.textMarkdown,
+            description: this.state.description,
+            doctorID: this.state.selectedOption.value
+        }
+        //console.log(this.state.doctors)
+        //console.log(data)
+        await this.props.createDoctorInfo(data)
+        let {res} = this.props
+       // console.log(res)
+        if(res.errCode === 1){
+            toast.error(this.props.language === LANGUAGES.VI ? 'Thiếu nội dung HTML!': res.message)
+        }
+        else if(res.errCode === 2){
+            toast.error(this.props.language === LANGUAGES.VI ? 'Thiếu nội dung Markdown!': res.message)
+        }
+        else if(res.errCode === 3){
+            toast.error(this.props.language === LANGUAGES.VI ? 'Thiếu ID bác sĩ!': res.message)
+        }
+        else{
+            toast.success(this.props.language === LANGUAGES.VI ? 'Lưu  thông tin thành công': res.message)
+        }
+
     }
     buildDoctorData = (doctors) => {
         let result = [];
@@ -103,19 +124,18 @@ class ManageDoctor extends Component {
             </div>
         );
     }
-
 }
-
 const mapStateToProps = state => {
     return {
         alldoctors: state.doctor.doctors,
-        language: state.app.language
+        language: state.app.language,
+        res: state.doctor.res
     };
 };
-
 const mapDispatchToProps = dispatch => {
     return {
-        getAllDoctors:() => dispatch(actions.fetchGetAllDoctors())
+        getAllDoctors:() => dispatch(actions.fetchGetAllDoctors()),
+        createDoctorInfo:(data) => dispatch(actions.creatDoctorInfo(data))
     };
 };
 
