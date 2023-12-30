@@ -1,5 +1,6 @@
 import actionTypes from './actionTypes';
-import {handleGetAllDoctors, handleCreeateDoctorInfo} from '../../services/doctorServiceAPI'
+import {handleGetAllDoctors, handleCreeateDoctorInfo,
+        handleGetDetailDoctor} from '../../services/doctorServiceAPI'
 
 //  Get all user
 export const fetchGetAllDoctors = () =>{
@@ -49,4 +50,28 @@ export const createDoctorInfoSuccessful = (res) => ({
 export const createDoctorInfoFailed = (res) => ({
     type: actionTypes.CREATE_DOCTOR_INFO_FAILED,
     res: res
+})
+
+//Get detail doctor's information
+export const getDetailDoctor = (id) =>{
+    return async (dispatch, getState) =>{
+        try{
+            let res = await handleGetDetailDoctor(id);
+            if (res && res.errCode === 0) {
+                dispatch(getDetailDoctorSuccessful(res));
+            } else{
+                dispatch(getDetailDoctorFailed());
+            }
+        }catch(e){
+            dispatch(getDetailDoctorFailed());
+            console.log("Error get detail doctor's information ", e)
+        }
+    }
+}
+export const getDetailDoctorSuccessful = (data) => ({
+    type: actionTypes.GET_DETAIL_DOCTOR_INFO_SUCCESSFUL,
+    res: data
+})
+export const getDetailDoctorFailed = () => ({
+    type: actionTypes.GET_DETAIL_DOCTOR_INFO_FAILED,
 })

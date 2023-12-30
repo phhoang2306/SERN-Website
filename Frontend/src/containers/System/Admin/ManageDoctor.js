@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import {LANGUAGES} from '../../../utils'
+import {LANGUAGES, CRUD_ACTIONS} from '../../../utils'
 import MarkdownIt from 'markdown-it';
 import * as actions from "../../../store/actions"
 import MdEditor from 'react-markdown-editor-lite';
@@ -19,7 +19,9 @@ class ManageDoctor extends Component {
             textHTML: '',
             textMarkdown: '',
             description: '',
-            doctors: []
+            doctors: [],
+            doctor_detail: '',
+            action: CRUD_ACTIONS.CREAT
         }
     }
     async componentDidMount() {
@@ -32,6 +34,11 @@ class ManageDoctor extends Component {
                 doctors: list
             })
         }
+        if(prevProps.data_doctor !== this.props.data_doctor){
+            this.setState({
+                doctor_detail: this.props.data_doctor
+            })
+        }
     }
     handleEditorChange = ({ html, text }) => {
         this.setState({
@@ -39,8 +46,27 @@ class ManageDoctor extends Component {
             textMarkdown: text
         })
     }
-    handleChangeSelect = selectedOption =>{
-        this.setState({selectedOption});
+    handleChangeSelect = async(selectedOption) => {
+        await this.setState({ selectedOption });
+        await this.props.getDetailDoctor(this.state.selectedOption.value)   
+        if(this.state.doctor_detail && this.state.doctor_detail.errCode === 0)
+            if(this.state.doctor_detail.data.infoData.contentHTML !== null){
+                this.setState({
+                    description: this.state.doctor_detail.data.infoData.description,
+                    textHTML: this.state.doctor_detail.data.infoData.contentHTML,
+                    textMarkdown: this.state.doctor_detail.data.infoData.contentMarkdown,
+                    action: CRUD_ACTIONS.EDIT
+                })
+            }
+            else{
+                this.setState({
+                    description: '',
+                    textHTML: '',
+                    textMarkdown: '',
+                    action: CRUD_ACTIONS.CREAT
+                })
+            }
+
     }
     handleChangeDecription = (event) =>{
         this.setState({
@@ -52,7 +78,8 @@ class ManageDoctor extends Component {
             contentHTML: this.state.textHTML,
             contentMarkdown: this.state.textMarkdown,
             description: this.state.description,
-            doctorID: this.state.selectedOption.value
+            doctorID: this.state.selectedOption.value,
+            action: this.state.action
         }
         //console.log(this.state.doctors)
         //console.log(data)
@@ -69,9 +96,18 @@ class ManageDoctor extends Component {
             toast.error(this.props.language === LANGUAGES.VI ? 'Thiếu ID bác sĩ!': res.message)
         }
         else{
-            toast.success(this.props.language === LANGUAGES.VI ? 'Lưu  thông tin thành công': res.message)
+            if(this.state.action === CRUD_ACTIONS.CREAT){
+                toast.success(this.props.language === LANGUAGES.VI ? 'Tạo thông tin thành công': res.message)
+            } else {
+                toast.success(this.props.language === LANGUAGES.VI ? 'Lưu thông tin thành công': res.message)
+            }
         }
-
+        this.setState({
+            description : '',
+            textHTML : '',
+            textMarkdown : '',
+            action : CRUD_ACTIONS.CREAT
+        })
     }
     buildDoctorData = (doctors) => {
         let result = [];
@@ -113,13 +149,14 @@ class ManageDoctor extends Component {
                         <MdEditor 
                         style={{ height: '500px' }} 
                         renderHTML={text => mdParser.render(text)} 
-                        onChange={this.handleEditorChange} />
+                        onChange={this.handleEditorChange} 
+                        value = {this.state.textMarkdown}/>
                     </div>
                 </div>
-            <button className='save-button'
+            <button className= {this.state.action === CRUD_ACTIONS.CREAT ? 'btn create-btn' : 'btn edit-btn'}
                 onClick={()=>this.handleSaveInfo()}
             >
-                <FormattedMessage id ='system.save'/>
+                <FormattedMessage id ={this.state.action === CRUD_ACTIONS.CREAT ? 'system.create' : 'system.save'}/>
             </button>
             </div>
         );
@@ -129,13 +166,15 @@ const mapStateToProps = state => {
     return {
         alldoctors: state.doctor.doctors,
         language: state.app.language,
-        res: state.doctor.res
+        res: state.doctor.res,
+        data_doctor: state.doctor.doctor_data
     };
 };
 const mapDispatchToProps = dispatch => {
     return {
         getAllDoctors:() => dispatch(actions.fetchGetAllDoctors()),
-        createDoctorInfo:(data) => dispatch(actions.creatDoctorInfo(data))
+        createDoctorInfo:(data) => dispatch(actions.creatDoctorInfo(data)),
+        getDetailDoctor:(id) => dispatch(actions.getDetailDoctor(id))
     };
 };
 

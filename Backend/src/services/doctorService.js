@@ -59,19 +59,18 @@ let handleCreateDoctorInfo = (data) =>{
             }
             else {
                 let message = ''
-                // Check data of doctor is exist or not
-                info = await db.Markdown.findOne({
-                    where: {doctorID : data.doctorID},
-                    raw:true
-                });
-                if(info){ // Update if an info exist 
-                    info.contentHTML = data.contentHTML,
-                    info.contentMarkdown = data.contentMarkdown,
-                    info.description = data.description,
-                    await info.save()
-                    message = "Save doctor's information succesfully!"
-                }
-                else{ // Create an info
+                if(data.action === 'EDIT'){
+                    let info = await db.Markdown.findOne({
+                        where: {doctorID : data.doctorID},
+                        raw: false // raw data can't be saved 
+                    })
+                        info.contentHTML = data.contentHTML,
+                        info.contentMarkdown = data.contentMarkdown,
+                        info.description = data.description,
+                        info.updateAt =  new Date();
+                        await info.save()
+                        message = "Save doctor's information succesfully!"
+                } else{ // Create an info
                    await db.Markdown.create({
                     contentHTML: data.contentHTML,
                     contentMarkdown: data.contentMarkdown,

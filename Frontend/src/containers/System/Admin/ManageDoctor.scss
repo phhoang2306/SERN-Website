@@ -4,7 +4,7 @@
         text-align: center;
         text-transform: uppercase;
         padding: 5px;
-        font-size: 20px;
+        font-size: 25px;
         font-weight: 600;
         font-family: ui-serif;
     }
@@ -22,20 +22,31 @@
             }
         }
     }
-    .save-button{
-        color: black;
-        background-color: orange;
-        border: none;
-        border-radius: 5%;
-        height: 40px;
-        width: auto;
-        font-size: 15px;
+    .edit-btn{
+        font-size: 16px;
+        color: #000;
+        font-weight: 600;
+        background-color: #ffc107;
+        border-color: #ffc107;
         &:hover{
-            background-color: rgb(241, 159, 5);
-            color: white;
+            background-color: rgb(243, 171, 37);
+            //color: rgba(255, 255, 255, 0.741);
         }
+    }
+    .create-btn{
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        &:hover{
+            background-color: #0f66e8;;
+            //color: #fff;
+        }
+
     }
 }
 .body-title{
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: 550;
 }

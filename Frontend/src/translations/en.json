@@ -106,6 +106,7 @@
         "upload-image":"Upload image"
     },
     "system":{
-        "save":"Save"
+        "save":"Save",
+        "create": "Create"
     }
 }

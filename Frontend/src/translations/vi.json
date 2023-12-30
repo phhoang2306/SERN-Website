@@ -105,6 +105,7 @@
         "upload-image":"Tải ảnh"
     },
     "system":{
-        "save":"Lưu thông tin"
+        "save":"Lưu thông tin",
+        "create": "Tạo thông tin"
     }
 }

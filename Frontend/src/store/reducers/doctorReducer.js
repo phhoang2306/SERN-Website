@@ -1,8 +1,9 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-   doctors: [],
-    res: []
+    doctors: [],
+    res: [],
+    doctor_data: ''
 }
 
 const doctorReducer = (state = initialState, action) => {
@@ -24,6 +25,16 @@ const doctorReducer = (state = initialState, action) => {
             }
         case actionTypes.CREATE_DOCTOR_INFO_FAILED:
             state.res = action.res;
+            return {
+                ...state
+            }
+        case actionTypes.GET_DETAIL_DOCTOR_INFO_SUCCESSFUL:
+            state.doctor_data = action.res;
+            return {
+                ...state
+            }
+        case actionTypes.GET_DETAIL_DOCTOR_INFO_FAILED:
+            state.doctor_data  = []
             return {
                 ...state
             }
