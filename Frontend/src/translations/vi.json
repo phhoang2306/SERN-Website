@@ -84,6 +84,9 @@
             "post": "Bài đăng",
             "manage-post": "Quản lí bài đăng",
             "manage-doctor-info": "Quản lí thông tin bác sĩ"
+        },
+        "doctor":{
+            "schedule": "Quản lí lịch khám"
         }
     },
     "user":{

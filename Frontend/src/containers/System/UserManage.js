@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import { omit } from 'lodash';
 import {getAllUSers} from '../../services/userServiceAPI'
 import ModalUser from './ModalUser';
 class UserManage extends Component {

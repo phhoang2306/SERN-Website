@@ -4,7 +4,6 @@ import * as actions from "../../../store/actions"
 import {LANGUAGES} from '../../../utils'
 import Header from '../../Homepage/Header'
 import Footer from '../../Homepage/Footer';
-import {handleGetDetailDoctor} from '../../../services/doctorServiceAPI'
 import "./DetailDoctor.scss"
 class DetailDoctor extends Component {
     constructor(props){

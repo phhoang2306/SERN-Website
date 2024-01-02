@@ -85,6 +85,9 @@
             "post": "Post",
             "manage-post": "Manage Post",
             "manage-doctor-info": "Manage Doctor's Information"
+        },
+        "doctor":{
+            "schedule": "Manage Schedule"
         }
     },
     "user":{

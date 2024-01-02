@@ -28,10 +28,14 @@ let handleUserLogin = (data) => {
                     result.errCode = 0;
                     result.message = "Login successfully !";
                     result.data = {
+                        'ID': user.ID,
                         'email': user.email,
                         'fullname': user.fullname,
                         'address': user.address,
                         'phone-number': user.phoneNumber,
+                        'gender': user.gender,
+                        'roleID': user.roleID,
+                        'positionID': user.positionID
                     }
                 } else {
                     result.errCode = 2;

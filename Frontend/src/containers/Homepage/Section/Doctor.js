@@ -62,7 +62,7 @@ class Doctor extends Component {
                                        style={{backgroundImage: `url(${imageBase64})`}}> 
                                     </div>
                                     <div className = 'position text-center'>
-                                        <div className='name-doctor'>{language == 'en' ? EnName : ViName}</div>
+                                        <div className='name-doctor'>{language === 'en' ? EnName : ViName}</div>
                                         <div className='subtitle'><FormattedMessage id ='doctor.sub_1'/></div>
                                     </div>
                                 </div>
