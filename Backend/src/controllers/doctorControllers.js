@@ -29,7 +29,7 @@ let handleCreateDoctorInfo = async(req, res) =>{
     let message = await doctorService.handleCreateDoctorInfo(req.body);
     return res.status(200).json(message);
 }
-let handleGetDetailDoctor = async(req, res) =>{
+let handleGetDetailDoctor = async(req, res) =>{ 
     let id = req.query.id;
     if(!id) {
         return res.status(200).json({

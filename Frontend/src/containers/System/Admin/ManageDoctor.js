@@ -25,7 +25,7 @@ class ManageDoctor extends Component {
         }
     }
     async componentDidMount() {
-        this.props.getAllDoctors()
+        await this.props.getAllDoctors()
     }
     componentDidUpdate(prevProps, prevState, snapshot){
         if(prevProps.alldoctors !== this.props.alldoctors){
@@ -50,6 +50,7 @@ class ManageDoctor extends Component {
         await this.setState({ selectedOption });
         await this.props.getDetailDoctor(this.state.selectedOption.value)   
         if(this.state.doctor_detail && this.state.doctor_detail.errCode === 0)
+            //console.log(this.props.data_doctor.data.infoData)
             if(this.state.doctor_detail.data.infoData.contentHTML !== null){
                 this.setState({
                     description: this.state.doctor_detail.data.infoData.description,

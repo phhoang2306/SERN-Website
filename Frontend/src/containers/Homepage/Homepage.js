@@ -19,13 +19,13 @@ class Homepage extends Component {
         };
         return (
             <div>
-                <Header/>
+                <Header isShow ={true}/>
                 <Specialty  settings = {settings}/>
                 <Medical settings = {settings} />
                 <Doctor settings = {settings} />
                 <Handbook/>
                 <About/>
-                <Footer/>
+                <Footer isShow ={true}/>
             </div>
         );
     }

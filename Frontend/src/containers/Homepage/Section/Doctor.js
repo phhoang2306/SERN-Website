@@ -5,6 +5,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import * as actions from "../../../store/actions"
+import { withRouter } from 'react-router';
+
 class Doctor extends Component {
     constructor(props){
         super(props)
@@ -24,11 +26,15 @@ class Doctor extends Component {
             })
         }
     }
-
+    
+    handleViewDetailDoctor =(id) =>{
+       this.props.history.push(`/doctor/${id}`)
+    }
     handlechangeLanguage = (language) =>{
         this.props.changeLanguageApp(language)
     }
     render() {
+        
         let arrdoctors = this.state.doctors
         let language = this.props.language
         arrdoctors = arrdoctors.concat(arrdoctors).concat(arrdoctors) // fake data
@@ -49,10 +55,9 @@ class Doctor extends Component {
                             if(item.image){
                                 imageBase64 = new Buffer(item.image, 'base64').toString('binary');
                             }
-                            console.log(imageBase64)
                             return (
                             <div className='slider-content'>
-                                <div className = 'doctor-border'>
+                                <div className = 'doctor-border' onClick={() => this.handleViewDetailDoctor(item.id)}>
                                     <div className = 'image-content doctor'
                                        style={{backgroundImage: `url(${imageBase64})`}}> 
                                     </div>
@@ -87,4 +92,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Doctor);
+export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Doctor));

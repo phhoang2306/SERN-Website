@@ -95,7 +95,7 @@ let handleGetDetailDoctor = (id) =>{
             let result = '';
             result = await db.User.findOne({
                 where: {id: id},
-                attributes: {exclude: ['password', 'image', 'createdAt', 'updatedAt']},
+                attributes: {exclude: ['password', 'createdAt', 'updatedAt']},
                 include: [
                     {model: db.Markdown, as: 'infoData', attributes: ['contentHTML', 'contentMarkdown', 'description']},
                     {model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi']},
