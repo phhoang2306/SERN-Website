@@ -46,4 +46,25 @@ export const doctorMenu = [
             }
         ]
     },
+    { //Clinic
+        name: 'menu.admin.clinic', menus: [
+            {
+                name: 'menu.admin.manage-clinic', link: '/system/manage-clinic'
+            }
+        ]
+    },
+    { //Sepcialty
+        name: 'menu.admin.specialty', menus: [
+            {
+                name: 'menu.admin.manage-specialty', link: '/system/manage-specialty'
+            }
+        ]
+    },
+    { //Post
+        name: 'menu.admin.post', menus: [
+            {
+                name: 'menu.admin.manage-post', link: '/system/manage-post'
+            }
+        ]
+    },
 ];

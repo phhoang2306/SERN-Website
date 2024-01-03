@@ -25,7 +25,6 @@ class Header extends Component {
         let menu = []
         if(userInfo && !_.isEmpty(userInfo)){
             let role = userInfo.roleID
-            console.log(role)
             menu = role === ROLE.ADMIN ? adminMenu : role === ROLE.DOCTOR ? doctorMenu : []
         }
         this.setState({

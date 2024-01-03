@@ -7,6 +7,7 @@ const initialState = {
     positions: [],
     users: [],
     doctors: [],
+    time: [],
     res: '',
 }
 
@@ -73,6 +74,16 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             } 
+         case actionTypes.FETCH_GET_TIME_SUCCESS:
+            state.time = action.data
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_GET_TIME_FAIL:
+            state.time = [];
+            return {
+                ...state
+            }
         default:
             return state;
     }

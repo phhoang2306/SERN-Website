@@ -111,5 +111,9 @@
     "system":{
         "save":"Save",
         "create": "Create"
+    },
+    "schedule":{
+        "manage": "Manage doctor's schedule",
+        "date": "Choose date"
     }
 }

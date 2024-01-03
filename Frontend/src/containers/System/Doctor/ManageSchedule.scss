@@ -1,0 +1,29 @@
+.schedule-container{
+    height: 500px;
+    width: 100%;
+    margin: 10px 0;
+    .schedule-tittle{
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .pick-hour-container{
+        height: fit-content;
+        display: flex;
+        //border: 1px solid red;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 30px 0;
+        .chooose-time{
+            border: 1px solid rgb(59, 58, 58);
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFA500;
+            //width: 120px;
+            background-color: #eae7e75f;
+        }
+    }
+}

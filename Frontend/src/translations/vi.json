@@ -110,5 +110,9 @@
     "system":{
         "save":"Lưu thông tin",
         "create": "Tạo thông tin"
+    },  
+    "schedule":{
+        "manage": "Quản lí lịch khám bác sĩ",
+        "date": "Chọn ngày"
     }
 }

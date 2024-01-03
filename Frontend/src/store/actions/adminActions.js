@@ -131,3 +131,29 @@ export const fetchGetTopDoctorSuccess = (res) => ({
 export const fetchGetTopDoctorFail = () => ({
     type: actionTypes.FETCH_GET_TOP_DOCTOR_FAIL,
 })
+
+
+// Get Position
+export const fetchTimeStart = () => {
+    return async (dispatch, getState) => {
+        try{
+            let res = await handlegetAllCodes('time');
+            if(res && res.errCode === 0){
+                dispatch(fetchTimeSuccess(res.data))
+            } else {
+                dispatch(fetchTimeFail());
+            }
+        } catch(e){
+            dispatch(fetchTimeFail());
+            console.log("fecthTimeStart error", e);
+        }
+
+    }
+}
+export const fetchTimeSuccess = (data) => ({
+    type: actionTypes.FETCH_GET_TIME_SUCCESS,
+    data: data
+})
+export const fetchTimeFail = () =>({
+    type: actionTypes.FETCH_GET_TIME_FAIL
+})
