@@ -26,6 +26,7 @@ class ManageDoctor extends Component {
     }
     async componentDidMount() {
         await this.props.getAllDoctors()
+        await this.props.getDoctorAllCode()
     }
     componentDidUpdate(prevProps, prevState, snapshot){
         if(prevProps.alldoctors !== this.props.alldoctors){
@@ -134,7 +135,8 @@ class ManageDoctor extends Component {
                             <Select
                                 value ={this.state.selectedOption}
                                 onChange = {this.handleChangeSelect}
-                                options={this.state.doctors}                            
+                                options={this.state.doctors}
+                                placeholder={'Choose doctor'}                           
                             />
                         </div>                    
                         <div className='body-info-right'>
@@ -144,6 +146,32 @@ class ManageDoctor extends Component {
                                 value = {this.state.description}
                             >
                             </textarea>
+                        </div>
+                    </div>
+                    <div className='further-info row'>
+                        <div className='info col-6 form-group'>
+                            <label><FormattedMessage id ='doctor.price'/></label>
+                            <input className='form-control'/>
+                        </div>
+                        <div className='info col-6 form-group'>
+                            <label><FormattedMessage id ='doctor.payment'/></label>
+                            <input className='form-control'/>
+                        </div>
+                        <div className='info col-6 form-group'>
+                            <label><FormattedMessage id ='doctor.province'/></label>
+                            <input className='form-control'/>
+                        </div>
+                        <div className='info col-6 form-group'>
+                            <label><FormattedMessage id ='doctor.clinic'/></label>
+                            <input className='form-control'/>
+                        </div>
+                        <div className='info col-6 form-group'>
+                            <label><FormattedMessage id ='doctor.address'/></label>
+                            <input className='form-control'/>
+                        </div>
+                        <div className='info col-6 form-group'>
+                            <label><FormattedMessage id ='doctor.note'/></label>
+                            <input className='form-control'/>
                         </div>
                     </div>
                     <div className='body-editor'>
@@ -168,6 +196,7 @@ const mapStateToProps = state => {
         alldoctors: state.doctor.doctors,
         language: state.app.language,
         res: state.doctor.res,
+        resAdmin: state.admin.resAdmin,
         data_doctor: state.doctor.doctor_data
     };
 };
@@ -175,7 +204,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getAllDoctors:() => dispatch(actions.fetchGetAllDoctors()),
         createDoctorInfo:(data) => dispatch(actions.creatDoctorInfo(data)),
-        getDetailDoctor:(id) => dispatch(actions.getDetailDoctor(id))
+        getDetailDoctor:(id) => dispatch(actions.getDetailDoctor(id)),
+        getDoctorAllCode:() => dispatch(actions.fetchDoctorAllCode())
     };
 };
 

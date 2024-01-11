@@ -1,0 +1,66 @@
+.schedule-content{
+    height: fit-content;
+    margin: 10px 0;
+    .tittle{
+        font-size: 18px;
+        gap: 15px;
+    }
+    .left-schedule-content{
+        width: 50%;
+        .select-date{
+            border: none;
+            color: #337ab7;
+            font-family: Montserrat,sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.5;
+            outline: none;
+            cursor: pointer;
+            touch-action: manipulation;
+            option{
+                cursor: pointer;
+            }
+        }
+        .time-choose{
+            //border: 1px solid red;
+            margin: 20px 0;
+            display: flex;
+            grid-gap: 15px;
+            gap: 15px;
+            flex-wrap: wrap;
+            .schedule-btn{
+                display: flex;
+                grid-gap: 15px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            .choose-schedule-text{
+                font: 14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+                text-align: start;
+                font-size: 15px;
+                font-style: italic;
+            }
+            .time-exist{
+                border: none;
+                background-color: #EEEEEE; 
+                font: 15px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+                display: inline;
+                font-weight: 500;
+                height: 35px;
+                &:hover {
+                    background-color: #FFA500;
+                }
+            }
+            .no-schedule{
+                font-size: 16px;
+                font-weight: 700;
+                font-family: system-ui;
+                color: #FFA500;
+                font-style: italic;
+            }
+        }
+    }
+    .right-schedule-content{
+        width: 50%;
+    }
+}

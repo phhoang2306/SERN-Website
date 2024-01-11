@@ -21,6 +21,16 @@
                 width: 80%;
             }
         }
+        .further-info{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 30px; 
+            font-size: 15px;
+            font-weight: 550;
+            .info{
+                margin: 5px 0;
+            }
+        }
     }
     .edit-btn{
         font-size: 16px;

@@ -133,7 +133,7 @@ export const fetchGetTopDoctorFail = () => ({
 })
 
 
-// Get Position
+// Get Info Allcode
 export const fetchTimeStart = () => {
     return async (dispatch, getState) => {
         try{
@@ -156,4 +156,32 @@ export const fetchTimeSuccess = (data) => ({
 })
 export const fetchTimeFail = () =>({
     type: actionTypes.FETCH_GET_TIME_FAIL
+})
+// Get Info Allcode
+export const fetchDoctorAllCode = () => {
+    return async (dispatch, getState) => {
+        try{
+            let res = []
+            res.price = await handlegetAllCodes('price');
+            res.payment = await handlegetAllCodes('payment');
+            res.province = await handlegetAllCodes('province');
+            if(res && res.price && res.payment && res.province){
+                console.log(res)
+                dispatch(fetchDoctorAllCodeSuccess(res))
+            } else {
+                dispatch(fetchDoctorAllCodeFail());
+            }
+        } catch(e){
+            dispatch(fetchDoctorAllCodeFail());
+            console.log("fecthDoctorAllCode error", e);
+        }
+
+    }
+}
+export const fetchDoctorAllCodeSuccess = (res) => ({
+    type: actionTypes.FETCH_DOCTOR_ALLCODE_SUCCESS,
+    res: res
+})
+export const fetchDoctorAllCodeFail = () =>({
+    type: actionTypes.FETCH_DOCTOR_ALLCODE_FAIL
 })

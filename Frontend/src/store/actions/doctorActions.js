@@ -1,6 +1,7 @@
 import actionTypes from './actionTypes';
 import {handleGetAllDoctors, handleCreeateDoctorInfo,
-        handleGetDetailDoctor} from '../../services/doctorServiceAPI'
+        handleGetDetailDoctor, handleCreateSchedule,
+        handleGetDoctorSchedule} from '../../services/doctorServiceAPI'
 
 //  Get all user
 export const fetchGetAllDoctors = () =>{
@@ -74,4 +75,54 @@ export const getDetailDoctorSuccessful = (data) => ({
 })
 export const getDetailDoctorFailed = () => ({
     type: actionTypes.GET_DETAIL_DOCTOR_INFO_FAILED,
+})
+
+// Create doctor schedule 
+export const creatDoctorSchedule = (data) =>{
+    return async (dispatch, getState) =>{
+        try{
+            let res = await handleCreateSchedule(data);
+            if (res && res.errCode === 0) {
+                dispatch(createDoctorScheduleSuccessful(res));
+            } else{
+                dispatch(createDoctorScheduleFailed(res));
+            }
+        }catch(e){
+            dispatch(createDoctorScheduleFailed(e));
+            console.log("Error create doctor's schedule ", e)
+        }
+    }
+}
+export const createDoctorScheduleSuccessful = (res) => ({
+    type: actionTypes.CREATE_DOCTOR_SCHEDULE_SUCCESSFUL,
+    res: res
+})
+export const createDoctorScheduleFailed = (res) => ({
+    type: actionTypes.CREATE_DOCTOR_SCHEDULE_FAILED,
+    res: res
+})
+
+// Get doctor schedule
+export const getDoctorSchedule = (id, date) =>{
+    return async (dispatch, getState) =>{
+        try{
+            let res = await handleGetDoctorSchedule(id, date);
+            if (res && res.errCode === 0) {
+                dispatch(getDoctorScheduleSuccessful(res.data));
+            } else{
+                dispatch(getDoctorScheduleFailed(res));
+            }
+        }catch(e){
+            dispatch(getDoctorScheduleFailed(e));
+            console.log("Error get doctor's schedule ", e)
+        }
+    }
+}
+export const getDoctorScheduleSuccessful = (res) => ({
+    type: actionTypes.GET_DOCTOR_SCHEDULE_SUCCESSFUL,
+    res : res
+})
+export const getDoctorScheduleFailed = (res) => ({
+    type: actionTypes.GET_DOCTOR_SCHEDULE_FAILED,
+    res: res
 })

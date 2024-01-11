@@ -12,7 +12,6 @@ class Header extends Component {
     }
     returnToHome = () =>{
         this.props.history.push(`/home`)
-
     }
     render() {
         let language = this.props.language;

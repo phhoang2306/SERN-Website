@@ -47,7 +47,13 @@
     "doctor":{
         "tittle": "Bác sĩ nổi bật",
         "information": "Thông tin bác sĩ",
-        "choose": "Chọn bác sĩ"
+        "choose": "Chọn bác sĩ",
+        "price": "Chọn giá",
+        "payment": "Chọn phương thức thanh toán",
+        "province":"Chọn tỉnh thành",
+        "clinic": "Chọn tên phòng khám",
+        "address": "Địa chỉ phòng khám",
+        "note": "Ghi chú"
     },
     "handbook":{
         "title": "Cẩm nang",
@@ -113,6 +119,9 @@
     },  
     "schedule":{
         "manage": "Quản lí lịch khám bác sĩ",
-        "date": "Chọn ngày"
+        "date": "Chọn ngày",
+        "schedule": "Lịch khám",
+        "noti": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
+        "choose": "Chọn và đặt miễn phí"
     }
 }

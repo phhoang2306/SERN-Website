@@ -47,7 +47,13 @@
     "doctor":{
         "tittle": "Outstanding Doctor",
         "information": "Doctor's Information",
-        "choose": "Choose Doctor"
+        "choose": "Choose Doctor",
+        "price": "Choose price",
+        "payment": "Choose payment",
+        "province":"Choose province",
+        "clinic": "Choose clinic name",
+        "address": "Clinic Address",
+        "note": "Note"
     },
     "handbook":{
         "title": "Handbook",
@@ -114,6 +120,9 @@
     },
     "schedule":{
         "manage": "Manage doctor's schedule",
-        "date": "Choose date"
+        "date": "Choose date",
+        "schedule": "Doctor Schedule",
+        "noti": "No appointments available during this time, please choose another time!",
+        "choose": "Choose and book for free"
     }
 }

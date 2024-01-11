@@ -1,4 +1,9 @@
+import { format } from 'mysql2';
 import db from '../models/index'
+require('dotenv').config()
+import _ from 'lodash'
+
+const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
 let handleGetTopDoctor = (limit) => {
     return new Promise (async(resolve, reject) => {
@@ -110,7 +115,69 @@ let handleGetDetailDoctor = (id) =>{
         }
     })
 }
+let handleCreateSchedule = (data) =>{
+    return new Promise ( async(resolve,reject) => {
+        try {
+            if(!data || data.length === 0){
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required param !'
+                })
+            }else{
+                data = data.map(item =>{
+                    item.maxNumber = MAX_NUMBER_SCHEDULE;
+                    return item;
+                })
+                // Check existing 
+                let exist = await db.Schedule.findAll({
+                    where: { doctorID: data[0].doctorID, date: data[0].date},
+                    attributes:['date', 'timeType', 'doctorID', 'maxNumber'],
+                    raw: true
+                })
+                if (exist && exist.length > 0){
+                    exist = exist.map(item =>{
+                        item.date = new Date(item.date).getTime();
+                        return item
+                    })
+                }
+                // Check difference
+                let toCreate = _.differenceWith(data, exist, (a, b) => {
+                    return a.timeType === b.timeType && a.date === b.date
+                })
+
+                // Create unexisting ata
+                if(toCreate && toCreate.length > 0){
+                    await db.Schedule.bulkCreate(toCreate)
+                }
+                resolve({
+                    errCode: 0,
+                    errMessage: 'Create schedule sucessful!'
+                })
+            }
+        } catch(e){
+            reject(e)
+        }
+    })
+}
+let handleGetSchedule = (doctorID, date ) =>{
+    return new Promise ( async(resolve,reject) => {
+            try {
+                let result = ''
+                let formattedDate = new Date(date).toISOString();
+                result = await db.Schedule.findAll({
+                    where: {doctorID: doctorID, date: formattedDate},
+                    include: [
+                        {model: db.Allcode, as: 'timeData', attributes: ['valueEn', 'valueVi']},
+                    ],
+                    nest: true
+                })
+                resolve(result)
+            } catch(e){
+                reject(e)
+            }
+        })
+}
 module.exports = {
-   handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo,
-   handleGetDetailDoctor
+    handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo,
+    handleGetDetailDoctor, handleCreateSchedule,handleGetSchedule
 }

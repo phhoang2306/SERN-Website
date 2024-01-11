@@ -12,7 +12,13 @@ const handleCreeateDoctorInfo = (data) =>{
 const handleGetDetailDoctor = (id) =>{
     return axios.get(`/api/get-detail-doctor?id=${id}`)
 }
+const handleCreateSchedule =(data) =>{
+    return axios.post(`/api/create-doctor-schedule`, data)
+}
+const handleGetDoctorSchedule = (id, date) =>{
+    return axios.get(`/api/get-schedule-doctor?id=${id}&date=${date}`)
+}
 export {
     handleGetTopDoctor, handleGetAllDoctors, handleCreeateDoctorInfo, 
-    handleGetDetailDoctor
+    handleGetDetailDoctor, handleCreateSchedule, handleGetDoctorSchedule
 }

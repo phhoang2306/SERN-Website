@@ -4,6 +4,7 @@ import * as actions from "../../../store/actions"
 import {LANGUAGES} from '../../../utils'
 import Header from '../../Homepage/Header'
 import Footer from '../../Homepage/Footer';
+import DoctorSchedule from './DoctorSchedule';
 import "./DetailDoctor.scss"
 class DetailDoctor extends Component {
     constructor(props){
@@ -34,7 +35,6 @@ class DetailDoctor extends Component {
     render() {
         const {data, contentHTML, description, position} = this.state
         const {language} = this.props
-        console.log(contentHTML)
         const viName = position.valueVi + ' ' + data.fullname;
         const enName = position.valueEn + ' ' + data.fullname;
         let imageBase64= '';
@@ -54,6 +54,9 @@ class DetailDoctor extends Component {
                                 </div>
                             <div className='doctor-sub'>{description}</div>
                         </div>
+                    </div>
+                    <div className='schedule-body'>
+                        <DoctorSchedule doctorDatafromParent = {data}/>
                     </div>
                     <div className='detail-body'>
                         {contentHTML !== '' && 

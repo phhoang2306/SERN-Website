@@ -8,7 +8,10 @@ const initialState = {
     users: [],
     doctors: [],
     time: [],
-    res: '',
+    payment: [],
+    province: [],
+    price: [],
+    resAdmin: '',
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -84,6 +87,18 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+        case actionTypes.FETCH_DOCTOR_ALLCODE_SUCCESS:
+            state.resAdmin = action.res
+            console.log(state.resAdmin)
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_DOCTOR_ALLCODE_FAIL:
+            state.resAdmin = [];
+            return {
+                ...state
+            }
+            
         default:
             return state;
     }

@@ -45,7 +45,39 @@ let handleGetDetailDoctor = async(req, res) =>{
         data: data
     })
 }
+let handleCreateSchedule = async(req, res) =>{ 
+    let data = req.body;
+    if(!data) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Missing parameter!',
+        })
+    }
+    else {
+        await doctorService.handleCreateSchedule(data)
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: 'Create data successfully',
+        })
+    }
+}
+let handleGetSchedule = async(req, res) =>{
+    let doctorID = req.query.id;
+    let date = req.query.date
+    if(!doctorID || !date )
+        return res.status(200).json({
+                errCode: 1,
+                errMessage: 'Missing parameter!',
+                data: {}
+        })
+    let data = await doctorService.handleGetSchedule(doctorID, +date)
+     return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Get information successfully!',
+        data: data
+    })
+}
 module.exports = {
     handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo,
-    handleGetDetailDoctor
+    handleGetDetailDoctor, handleCreateSchedule, handleGetSchedule
 }
