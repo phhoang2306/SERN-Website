@@ -123,6 +123,8 @@
         "date": "Choose date",
         "schedule": "Doctor Schedule",
         "noti": "No appointments available during this time, please choose another time!",
-        "choose": "Choose and book for free"
+        "choose": "Choose and book for free",
+        "address": "Adreess",
+        "price": "Price"
     }
 }

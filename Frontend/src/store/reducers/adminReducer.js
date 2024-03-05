@@ -88,13 +88,16 @@ const adminReducer = (state = initialState, action) => {
                 ...state
             }
         case actionTypes.FETCH_DOCTOR_ALLCODE_SUCCESS:
-            state.resAdmin = action.res
-            console.log(state.resAdmin)
+            state.price = action.res.price.data
+            state.province = action.res.province.data
+            state.payment = action.res.payment.data
             return {
                 ...state
             }
         case actionTypes.FETCH_DOCTOR_ALLCODE_FAIL:
-            state.resAdmin = [];
+            state.price = []
+            state.province = []
+            state.payment = []
             return {
                 ...state
             }

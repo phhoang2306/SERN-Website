@@ -29,7 +29,7 @@ class UserRedux extends Component {
             imagebase64: '',
             res: '',
             isOpen: false,
-            action: CRUD_ACTIONS.CREAT,
+            action: CRUD_ACTIONS.CREATE,
         }
     }
 
@@ -96,7 +96,7 @@ class UserRedux extends Component {
         return isValid;
     }
     handleOnClickBtn = async () =>{
-        if (this.state.action === CRUD_ACTIONS.CREAT){
+        if (this.state.action === CRUD_ACTIONS.CREATE){
             if(this.checkValidateInput()){
                 await this.props.createNewUser({
                     email: this.state.email,
@@ -155,14 +155,14 @@ class UserRedux extends Component {
                     role: this.props.roles && this.props.roles.length > 0 ? this.props.roles[0].keyMap : '',
                     position: this.props.positions && this.props.positions.length > 0 ? this.props.positions[0].keyMap : '',
                     avatar: '',
-                    action: CRUD_ACTIONS.CREAT,
+                    action: CRUD_ACTIONS.CREATE,
                     preView: ''
                 })
             } else if (this.state.res.errCode === 1){
                 toast.error(this.props.language === LANGUAGES.VI ?'Người dùng không tồn tại' : this.state.res.message)
                 this.setState({
                     email: '',
-                    action: CRUD_ACTIONS.CREAT
+                    action: CRUD_ACTIONS.CREATE
                 })
             }
         }
@@ -208,9 +208,9 @@ class UserRedux extends Component {
                     <div className='text-center'>
                         <span><FormattedMessage id ='user.add'/></span>
                         <div className='col-3 mt-3'>
-                                <button className= {this.state.action === CRUD_ACTIONS.CREAT ? 'btn btn-primary' : 'btn btn-warning'}
+                                <button className= {this.state.action === CRUD_ACTIONS.CREATE ? 'btn btn-primary' : 'btn btn-warning'}
                                 onClick={() => this.handleOnClickBtn()}>
-                                    {this.state.action === CRUD_ACTIONS.CREAT ? 
+                                    {this.state.action === CRUD_ACTIONS.CREATE ? 
                                     <FormattedMessage id ='user.create'/> : <FormattedMessage id ='user.edit'/>}
                                 </button>
                         </div>
@@ -221,14 +221,14 @@ class UserRedux extends Component {
                                 <label><FormattedMessage id ='user.email'/></label>
                                 <input className = "form-control" type ="email" placeholder ="@gmail.com" value={email}
                                 onChange={(event) => {this.handleOnChangeValue(event, 'email')}}
-                                //disabled={this.state.action === CRUD_ACTIONS.CREAT ? false : true}
+                                //disabled={this.state.action === CRUD_ACTIONS.CREATE ? false : true}
                                 />
                             </div>
                             <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.password'/></label>
                                 <input className = "form-control" type ="password" 
                                 value={password} onChange={(event) => {this.handleOnChangeValue(event, 'password')}}
-                                disabled={this.state.action === CRUD_ACTIONS.CREAT ? false : true}/>
+                                disabled={this.state.action === CRUD_ACTIONS.CREATE ? false : true}/>
                             </div>
                            <div className='col-3 mt-3'>
                                 <label><FormattedMessage id ='user.fullname'/></label>

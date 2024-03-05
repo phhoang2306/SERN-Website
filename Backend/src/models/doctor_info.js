@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Doctor_Info.belongsTo(models.User, {foreignKey: 'doctorID', as:'doctorData'})
+      Doctor_Info.belongsTo(models.Allcode, {foreignKey: 'priceID', targetKey: 'keyMap', as:'priceData'})
+      Doctor_Info.belongsTo(models.Allcode, {foreignKey: 'provinceID', targetKey: 'keyMap', as:'provinceData'})
+      Doctor_Info.belongsTo(models.Allcode, {foreignKey: 'paymentID', targetKey: 'keyMap', as:'paymentData'})
     }
   }
   Doctor_Info.init({
@@ -25,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Doctor_Info',
+    freezeTableName: true
   });
   return Doctor_Info;
 };

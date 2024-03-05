@@ -62,8 +62,39 @@ let handleCreateDoctorInfo = (data) =>{
                     message: "Missing doctorID!"
                 })
             }
+            else if (!data.selectedPrice){
+                resolve({
+                    errCode: 4,
+                    message: "Missing selectedPrice!"
+                })
+            }
+            else if (!data.selectedPayment){
+                resolve({
+                    errCode: 5,
+                    message: "Missing selectedPayment!"
+                })
+            }
+            else if (!data.selectedProvince){
+                resolve({
+                    errCode: 6,
+                    message: "Missing selectedProvince!"
+                })
+            }
+            else if (!data.nameClinic){
+                resolve({
+                    errCode: 7,
+                    message: "Missing nameClinic!"
+                })
+            }
+            else if (!data.addressClinic){
+                resolve({
+                    errCode: 8,
+                    message: "Missing addressClinic!"
+                })
+            }
             else {
                 let message = ''
+                // Save data into Markdown
                 if(data.action === 'EDIT'){
                     let info = await db.Markdown.findOne({
                         where: {doctorID : data.doctorID},
@@ -83,6 +114,31 @@ let handleCreateDoctorInfo = (data) =>{
                     doctorID: data.doctorID
                     })
                     message = "Create doctor's information successfully!"
+                }
+                // Save data into Doctor info
+                let doctor_info = await db.Doctor_Info.findOne({
+                        where: {doctorID : data.doctorID},
+                        raw: false // raw data can't be saved 
+                })
+                if(doctor_info){
+                    doctor_info.priceID = data.selectedPrice.value,
+                    doctor_info.provinceID = data.selectedProvince.value,
+                    doctor_info.paymentID = data.selectedPayment.value,
+                    doctor_info.addressClinic = data.addressClinic,
+                    doctor_info.nameClinic = data.nameClinic,
+                    doctor_info.note = data.note
+                    await doctor_info.save()
+                } else{
+                    await db.Doctor_Info.create({
+                        doctorID: data.doctorID,
+                        priceID : data.selectedPrice.value,
+                        provinceID : data.selectedProvince.value,
+                        paymentID : data.selectedPayment.value,
+                        addressClinic : data.addressClinic,
+                        nameClinic : data.nameClinic,
+                        note : data.note,
+                        count: 10
+                    })
                 }
                 resolve({
                     errCode: 0,
@@ -104,11 +160,18 @@ let handleGetDetailDoctor = (id) =>{
                 include: [
                     {model: db.Markdown, as: 'infoData', attributes: ['contentHTML', 'contentMarkdown', 'description']},
                     {model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi']},
-                    {model: db.Allcode, as: 'genderData', attributes: ['valueEn', 'valueVi']}
+                    {model: db.Allcode, as: 'genderData', attributes: ['valueEn', 'valueVi']},
+                    {model: db.Doctor_Info, as: 'doctorData', attributes:{exclude: ['doctorID','id', 'createdAt', 'updatedAt']},
+                    include: [
+                        {model: db.Allcode, as: 'priceData', attributes: ['valueEn', 'valueVi']},
+                        {model: db.Allcode, as: 'provinceData', attributes: ['valueEn', 'valueVi']},
+                        {model: db.Allcode, as: 'paymentData', attributes: ['valueEn', 'valueVi']}
+                    ]}
                 ],
                 raw: true,
                 nest: true
             })
+            
             resolve(result)
         }catch(e){
             reject(e)
@@ -177,7 +240,23 @@ let handleGetSchedule = (doctorID, date ) =>{
             }
         })
 }
+let handleGetClinicInfo = (id) =>{
+     return new Promise(async (resolve, reject) => {
+        try{
+            let result = '';
+            result = await db.Doctor_Info.findOne({
+                where: {doctorID: id},
+                attributes: ['addressClinic', 'nameClinic'],
+                raw: true
+            })
+            resolve(result)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
 module.exports = {
     handleGetTopDoctor, handleGetAllDoctors, handleCreateDoctorInfo,
-    handleGetDetailDoctor, handleCreateSchedule,handleGetSchedule
+    handleGetDetailDoctor, handleCreateSchedule,handleGetSchedule,
+    handleGetClinicInfo: handleGetClinicInfo
 }

@@ -4,7 +4,8 @@ const initialState = {
     doctors: [],
     res: [],
     doctor_data: '',
-    schedule: []
+    schedule: [],
+    clinic_data: ''
 }
 
 const doctorReducer = (state = initialState, action) => {
@@ -51,12 +52,21 @@ const doctorReducer = (state = initialState, action) => {
             }
         case actionTypes.GET_DOCTOR_SCHEDULE_SUCCESSFUL:
             state.schedule = action.res;
-            console.log(state.schedule)
             return {
                 ...state
             }
         case actionTypes.GET_DOCTOR_SCHEDULE_FAILED:
             state.schedule  = []
+            return {
+                ...state
+            }
+        case actionTypes.GET_CLINIC_INFO_SUCCESSFUL:
+            state.clinic_data = action.data;
+            return {
+                ...state
+            }
+        case actionTypes.GET_CLINIC_INFO_FAILED:
+            state.clinic_data = ''
             return {
                 ...state
             }

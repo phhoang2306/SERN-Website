@@ -1,11 +1,14 @@
 .schedule-content{
     height: fit-content;
     margin: 10px 0;
+    display: flex;
     .tittle{
         font-size: 18px;
         gap: 15px;
     }
     .left-schedule-content{
+        //display: flex;
+        //flex-direction: column;
         width: 50%;
         .select-date{
             border: none;

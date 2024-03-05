@@ -14,6 +14,8 @@ class DoctorSchedule extends Component {
             listDay: [],
             idDoctor: '',
             today: '', 
+            clinicName: '',
+            clinicAddress: ''
         }
     }
     async componentDidMount (){
@@ -26,6 +28,16 @@ class DoctorSchedule extends Component {
         if(prevProps.doctorDatafromParent !== this.props.doctorDatafromParent){
             let id = this.props.doctorDatafromParent.id
             await this.props.handleGetSchedule(id, this.state.today)
+            this.setState({
+                idDoctor: id
+            })
+            await this.props.getClinicInfo(id)
+        }
+        if(prevProps.clinic_data !== this.props.clinic_data){
+            this.setState({
+                clinicName: this.props.clinic_data.nameClinic,
+                clinicAddress: this.props.clinic_data.addressClinic
+            })
         }
     }
     capitalizeFirstLetter = (word) =>{
@@ -54,12 +66,14 @@ class DoctorSchedule extends Component {
         await this.props.handleGetSchedule(id, date)
     }
     render() {
-        let {listDay} = this.state
-        const {schedule, language} = this.props
+        let {listDay, clinicName, clinicAddress} = this.state
+        const {schedule, language, clinic_data} = this.props
         return (
             <div className='schedule-content'>
-                <span className='tittle'><i class="fa fa-calendar">  <FormattedMessage id="schedule.schedule"/></i></span>
                 <div className='left-schedule-content'>
+                    <div className='left-icon'>
+                        <span className='tittle'><i class="fa fa-calendar">  <FormattedMessage id="schedule.schedule"/></i></span>
+                    </div>
                     <select className='select-date'onChange={(event)=>this.handleOnChangeDate(event)}>
                         {}
                         {listDay && listDay.length > 0 && 
@@ -87,7 +101,9 @@ class DoctorSchedule extends Component {
                     </div>
                 </div>
                 <div className='right-schedule-content'>
-                    
+                    <div className='address-title'><FormattedMessage id="schedule.address"/> </div>
+                    <div className='clinic-name'>{clinicName}</div>
+                    <div className='clinic-address'>{clinicAddress}</div>
                 </div>
             </div>
         )
@@ -98,13 +114,15 @@ class DoctorSchedule extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        schedule: state.doctor.schedule
+        schedule: state.doctor.schedule,
+        clinic_data: state.doctor.clinic_data
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleGetSchedule:(id, date) => dispatch(actions.getDoctorSchedule(id, date))
+        handleGetSchedule:(id, date) => dispatch(actions.getDoctorSchedule(id, date)),
+        getClinicInfo:(id) => dispatch(actions.getClinicInfo(id))
     };
 };
 

@@ -166,7 +166,6 @@ export const fetchDoctorAllCode = () => {
             res.payment = await handlegetAllCodes('payment');
             res.province = await handlegetAllCodes('province');
             if(res && res.price && res.payment && res.province){
-                console.log(res)
                 dispatch(fetchDoctorAllCodeSuccess(res))
             } else {
                 dispatch(fetchDoctorAllCodeFail());

@@ -48,7 +48,7 @@
         "tittle": "Bác sĩ nổi bật",
         "information": "Thông tin bác sĩ",
         "choose": "Chọn bác sĩ",
-        "price": "Chọn giá",
+        "price": "Chọn giá khám bệnh",
         "payment": "Chọn phương thức thanh toán",
         "province":"Chọn tỉnh thành",
         "clinic": "Chọn tên phòng khám",
@@ -122,6 +122,8 @@
         "date": "Chọn ngày",
         "schedule": "Lịch khám",
         "noti": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
-        "choose": "Chọn và đặt miễn phí"
+        "choose": "Chọn và đặt miễn phí",
+        "address": "Địa chỉ phòng khám",
+        "price": "Giá khám"
     }
 }
